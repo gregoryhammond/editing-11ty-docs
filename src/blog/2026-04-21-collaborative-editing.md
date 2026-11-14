@@ -5,6 +5,7 @@ eleventyNavigation:
 blogHighlight: true
 screenshotCacheBust: 1
 ---
+
 **TL;DR** After a [whoopsie-daisy false-start on our initial Kickstarter campaign](https://blog.fontawesome.com/pausing-kickstarter/), we’re ramping up again to launch [Kickstarter Final_FINAL_v2 on **April 28, 2026**](https://www.kickstarter.com/projects/fontawesome/build-awesome-pro?ref=43ttgb).
 
 <a href="{{ config.kickstarterUrl }}" class="announcement-btn elv-externalexempt">{% include "components/ba-balloon.svg" %}We’re improving how developers collaborate on the Open Web. Get notified on April 28th!</a>
@@ -53,7 +54,6 @@ export function render({ title }) {
 
 </details>
 
-
 When using Build Awesome Pro (and with the proper permissions for editing), the `title` data property will render as an editable value on the page. Edits can be made directly in-browser and are applied in the data cascade to apply _project-wide_.
 
 {% callout "demo" %}
@@ -62,6 +62,7 @@ When using Build Awesome Pro (and with the proper permissions for editing), the 
 
 Build Awesome Pro will expose controls in your project to make your content editable inline (in this example, a String literal). And when folks edit the above template, their edits will persist directly via commits in version control in the original data cascade location:
 
+<!-- prettier-ignore-start -->
 {% highlight "diff-md" %}
 {% raw %}
 ---
@@ -72,6 +73,8 @@ Build Awesome Pro will expose controls in your project to make your content edit
 {% endraw %}
 {% endhighlight %}
 
+<!-- prettier-ignore-end -->
+
 This will render the template’s new `title` property in the data cascade (wherever used throughout your project), in this case something like:
 
 {% callout "demo" %}
@@ -80,7 +83,7 @@ This will render the template’s new `title` property in the data cascade (wher
 
 At some future time, if you decide that editing is no longer necessary for your project, your Build Awesome project will still build using the open source engine for hosting wherever you’d like, without any changes! **No lock-in, no shenanigans.**
 
-_Check out this [lower-level (developer-specific) example of full template editing and build-in-a-browser on our home page.](/#try-eleventy-in-your-browser)_
+_Check out this [lower-level (developer-specific) example of full template editing and build-in-a-browser.](/docs/try/)_
 
 ## Get notified — April 28!
 

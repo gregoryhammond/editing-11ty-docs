@@ -7,11 +7,11 @@ eleventyNavigation:
 
 # Front Matter Data
 
-{% tableofcontents %}
-
 Add data in your template front matter, like this:
 
 {% codetitle "YAML", "Syntax" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 title: My page title
@@ -21,6 +21,8 @@ title: My page title
 <html>
 …
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 The above is using [YAML syntax](https://learnxinyminutes.com/docs/yaml/). You can [use other formats too](#front-matter-formats).
@@ -51,6 +53,7 @@ By default, `yaml` is used when a front matter syntax is not explicitly specifie
 
 ### JSON Front Matter
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---json
 {
@@ -63,6 +66,8 @@ By default, `yaml` is used when a front matter syntax is not explicitly specifie
 	…
 </html>
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 ### JavaScript Front Matter <span id="javascript-front-matter"></span>
@@ -70,6 +75,8 @@ By default, `yaml` is used when a front matter syntax is not explicitly specifie
 {% addedin "3.0.0-alpha.18" %}You can use any arbitrary JavaScript here and we’ll export all of the top level variables and functions to your template. This uses the [`node-retrieve-globals` library](https://github.com/zachleat/node-retrieve-globals).
 
 {% codetitle "Nunjucks", "Syntax" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---js
 const title = "My page title";
@@ -82,14 +89,16 @@ function currentDate() {
 <h1>{{ title }}</h1>
 <p>Published on {{ currentDate() }}</p>
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("jinja2") | safe }}
 
 _Warning: while Nunjucks and Liquid syntax are similar, the above example will **not** work in Liquid. Liquid does not allow function execution in output (e.g. `{% raw %}{{ currentDate() }}{% endraw %}`)._
 
-
 <details>
 <summary><strong>More Advanced Examples of JavaScript Front Matter</strong></summary>
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---js
 // async-friendly
@@ -107,6 +116,8 @@ console.log({ noop });
 ---
 <!-- The template content goes here -->
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 </details>
@@ -116,6 +127,8 @@ console.log({ noop });
 `js` front matter also supports JavaScript object notation (though it isn’t as pretty).
 
 {% codetitle "Nunjucks", "Syntax" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---js
 {
@@ -130,6 +143,8 @@ console.log({ noop });
 <h1>{{ title }}</h1>
 <p>Published on {{ currentDate() }}</p>
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 _Warning: while Nunjucks and Liquid syntax are similar, the above example will **not** work in Liquid. Liquid does not allow function execution in output (e.g. `{% raw %}{{ currentDate() }}{% endraw %}`)._

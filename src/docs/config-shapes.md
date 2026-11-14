@@ -4,6 +4,7 @@ eleventyNavigation:
   parent: Configuration
 excludeFromSidebar: true
 ---
+
 # Configuration Shapes
 
 You can learn more about the [default file names for configuration files](/docs/config.md#default-filenames).
@@ -20,6 +21,7 @@ You can learn more about the [default file names for configuration files](/docs/
 
 Instead of exporting a `config` object with your static options, you _can_ return this same object in your configuration callback (though it is **not preferred** for order-of-operations reasons).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default async function(eleventyConfig) {
 	return {
@@ -30,12 +32,15 @@ export default async function(eleventyConfig) {
   };
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Export Default Object
 
 You _can_ export your static options as the top level default export too, though configuration **[callback functions](#callback-function) are preferred** as they allow you to access the full Configuration API.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default {
 	dir: {
@@ -43,4 +48,6 @@ export default {
 	}
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

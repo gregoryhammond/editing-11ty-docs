@@ -18,9 +18,11 @@ This is a bit different from our client-side implementation because this data is
 - Install new dependencies: `npm install node-fetch`
 - Read more about [`node-fetch`](https://www.npmjs.com/package/node-fetch)
 - It’s better to use the [Eleventy Fetch utility](/docs/plugins/fetch.md) instead, which will cache your fetch results to avoid hitting the GitHub API on every build.
-	- Related [Quick Tip: Cache Data Requests](/docs/quicktips/cache-api-requests.md)
+  - Related [Quick Tip: Cache Data Requests](/docs/quicktips/cache-api-requests.md)
 
 <div class="codetitle codetitle-right-md">_data/github.js</div>
+
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import fetch from "node-fetch";
 
@@ -37,6 +39,8 @@ export default async function () {
 	};
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 Now in your templates you can output the stargazers count with:

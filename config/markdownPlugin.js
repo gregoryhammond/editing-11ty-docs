@@ -3,9 +3,9 @@ import markdownItToc from "markdown-it-table-of-contents";
 import { IdAttributePlugin } from "@11ty/eleventy";
 import memoize from "memoize";
 
-const markdownItSlugify = memoize((s => {
+const markdownItSlugify = memoize((s) => {
 	return slugify(removeExtraText(s));
-}));
+});
 
 function removeExtraText(s) {
 	let newStr = String(s);
@@ -17,15 +17,15 @@ function removeExtraText(s) {
 	return newStr;
 }
 
-export default function (eleventyConfig) {
-	eleventyConfig.addPlugin(IdAttributePlugin, {
+export default function ($config) {
+	$config.addPlugin(IdAttributePlugin, {
 		// custom slugify function, otherwise we use Eleventy’s built-in `slugify` filter.
 		slugify: markdownItSlugify,
 		selector: "h1,h2,h3,h4,h5,h6", // default
 	});
 
 	let mdIt;
-	eleventyConfig.amendLibrary("md", (mdLib) => {
+	$config.amendLibrary("md", (mdLib) => {
 		mdIt = mdLib;
 		mdLib.use(markdownItToc, {
 			includeLevel: [2, 3],
@@ -46,15 +46,15 @@ export default function (eleventyConfig) {
 		mdLib.linkify.tlds(".io", false);
 	});
 
-	const renderMarkdownInline = memoize(content => {
+	const renderMarkdownInline = memoize((content) => {
 		return mdIt.renderInline(content);
 	});
 
-	eleventyConfig.addPairedShortcode("markdown", renderMarkdownInline);
-	eleventyConfig.addFilter("markdown", renderMarkdownInline);
+	$config.addPairedShortcode("markdown", renderMarkdownInline);
+	$config.addFilter("markdown", renderMarkdownInline);
 
 	// WebC migration: callout.webc
-	eleventyConfig.addPairedShortcode(
+	$config.addPairedShortcode(
 		"callout",
 		function (content, level = "", format = "html", customLabel = "") {
 			if (format === "md") {
@@ -70,47 +70,31 @@ export default function (eleventyConfig) {
 			}
 
 			if (level === "error") {
-				if(!customLabel) {
+				if (!customLabel) {
 					label = level.toUpperCase();
 				}
 				classLevel = "elv-callout-error";
 			} else if (level === "warn") {
-				if(!customLabel) {
+				if (!customLabel) {
 					label = "WARNING";
 				}
 				classLevel = "elv-callout-warn";
-			} else if(level === "info") {
+			} else if (level === "info") {
 				// label is skipped
 				classLevel = "elv-callout-info";
-			} else if(level === "demo") {
+			} else if (level === "demo") {
 				// label is skipped
 				classLevel = "elv-callout-skew elv-callout-skew--demo";
-			} else if(level === "pitfall") {
+			} else if (level === "pitfall") {
 				// label is skipped
 				classLevel = "elv-callout-skew elv-callout-skew--pitfall";
 			}
 
-			let labelHtml = label
-				? `<div class="elv-callout-label">${customLabel || label}</div>`
-				: "";
+			let labelHtml = label ? `<div class="elv-callout-label">${customLabel || label}</div>` : "";
 			let contentHtml =
-				(content || "").trim().length > 0
-					? `<div class="elv-callout-c">${content}</div>`
-					: "";
+				(content || "").trim().length > 0 ? `<div class="elv-callout-c">${content}</div>` : "";
 
 			return `<div class="elv-callout${classLevel ? ` ${classLevel}` : ""}">${labelHtml}${contentHtml}</div>`;
-		}
+		},
 	);
-
-	eleventyConfig.addShortcode("tableofcontents", function (isOpen) {
-		// Markdown only.
-		if (this.page.inputPath.endsWith("md")) {
-			return `<details class="toc"${isOpen ? " open" : ""}>
-<summary>On this page</summary>
-
-[[toc]]
-
-</details>`;
-		}
-	});
 }

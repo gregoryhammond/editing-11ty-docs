@@ -7,8 +7,6 @@ eleventyNavigation:
 excludeFromSidebar: true
 ---
 
-{% tableofcontents %}
-
 {% include "image-usage.njk" %}
 
 We can use the [Image JavaScript API](./image-js.md) and wire it up to a [Universal Shortcode](../shortcodes.md).
@@ -28,6 +26,7 @@ The examples below require an [async-friendly shortcodes](/docs/shortcodes/#asyn
 
 ### Configuration
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import Image from "@11ty/eleventy-img";
 
@@ -49,11 +48,12 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 - Read the [**full options list**](./image.md#options).
 - _HTML Tip:_ Read more about the special (and very useful) [`loading`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-loading) and [`decoding`](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/img#attr-decoding) HTML attributes.
-
 
 #### More about Shortcodes
 
@@ -82,6 +82,7 @@ Now you can use the `image` shortcode in your templates and the appropriate HTML
 
 You _can_ use `transformOnRequest` with Eleventy Shortcodes too with a little bit more configuration:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import Image from "@11ty/eleventy-img";
 import { eleventyImageOnRequestDuringServePlugin } from "@11ty/eleventy-img";
@@ -105,12 +106,15 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(eleventyImageOnRequestDuringServePlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Using Shortcodes Alongside the Image HTML Transform Method
 
 If you’re using an Image Shortcode or the WebC component in a project and you’re also adding the Image HTML Transform make sure you add [`eleventy:ignore` to the `<img>` attributes](./image.md#attribute-overrides) so the images aren’t processed twice:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import Image from "@11ty/eleventy-img";
 
@@ -130,10 +134,13 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Using `Image.generateHTML` to create markup
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import Image from "@11ty/eleventy-img";
 
@@ -150,15 +157,17 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Make your own markup
-
 
 If you have an advanced use case and don’t want to use `returnType: "html"` or `Image.generateHTML` to create image markup, you can do it yourself!
 
 Uses the [`entities` npm package](https://www.npmjs.com/package/entities).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { escapeAttribute } from "entities";
 import Image from "@11ty/eleventy-img";
@@ -180,6 +189,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Synchronous Shortcode

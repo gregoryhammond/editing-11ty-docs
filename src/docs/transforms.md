@@ -13,6 +13,7 @@ Transforms can modify a template’s output. For example, use a transform to for
 
 {% callout "info", "md" %}The provided transform function **must** return the original or transformed content.{% endcallout %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	// Can be sync or async
@@ -27,6 +28,8 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Access to [Eleventy’s `page` variable](/docs/data-eleventy-supplied/#page-variable) (via `this.page`) was added in Eleventy v2.0. For previous versions, [consult the older versions of the docs](https://v1-0-2.11ty.dev/docs/config/#transforms).
@@ -61,6 +64,7 @@ eleventyConfig.addTransform("second", () => {});
 
 ### Minify HTML Output
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import htmlmin from "html-minifier-terser";
 
@@ -82,6 +86,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Note that `html-minifier-terser` has a [significant number of options](https://github.com/terser/html-minifier-terser?tab=readme-ov-file#options-quick-reference), most of which are disabled by default.

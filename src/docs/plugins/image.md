@@ -10,8 +10,6 @@ communityLinksKey: image
 overrideCommunityLinks: true
 ---
 
-{% tableofcontents %}
-
 {% renderTemplate "webc" %}<div class="build-cost-inline"><a href="#build-cost"><build-cost cost="3"></build-cost></a></div>{% endrenderTemplate %}
 
 Utility to perform build-time image transformations for both vector and raster images: output multiple image sizes, multiple formats, and cache remote images locally. Uses the [sharp](https://sharp.pixelplumbing.com/) image processor.
@@ -29,9 +27,12 @@ Published as [`@11ty/eleventy-img`](https://www.npmjs.com/package/@11ty/eleventy
 
 _Image v7.0.0 requires Node 22+ (and is [ESM](/docs/cjs-esm/))._
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-img
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 ## Usage
@@ -53,6 +54,7 @@ There are a few different ways to use Eleventy image:
 
 <br><br>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
@@ -60,6 +62,8 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(eleventyImageTransformPlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 That’s it! All `<img>` and `<picture>` elements will be processed for you by Eleventy Image.
@@ -84,8 +88,8 @@ You can configure individual `<img>` elements with per-instance overrides:
 - `<img eleventy:formats="webp">` comma separated string to override the default formats.
 - `<img eleventy:ignore>` skips this image.
 - `<img eleventy:optional>` {% addedin "Image v6.0.0" %}controls what happens when processing this image throws an Error (good for remote images), see [`failOnError` option](#fail-on-error). Default behavior removes the `src` attribute from the `<img>` node.
-	- `<img eleventy:optional="keep">`: leave as-is, which would likely result in an error when a user visits your page.
-	- `<img eleventy:optional="placeholder">`: replace the `src` attribute with a transparent PNG Data URI.
+  - `<img eleventy:optional="keep">`: leave as-is, which would likely result in an error when a user visits your page.
+  - `<img eleventy:optional="placeholder">`: replace the `src` attribute with a transparent PNG Data URI.
 - `<img eleventy:output>` overrides the output directory. Similar to [`urlPath`](#url-path), absolute paths (e.g. `<img eleventy:output="/mydirectory/">`) are relative to the Eleventy output directory and relative paths are relative to the template’s URL (e.g. `<img eleventy:output="./mydirectory/">`).
 - `<img eleventy:pictureattr:NAME="VALUE">` {% addedin "Image v6.0.0" %} attributes are hoisted as `<picture NAME="VALUE">` (if `<picture>` is in use)
 
@@ -93,6 +97,7 @@ You can configure individual `<img>` elements with per-instance overrides:
 
 Any of the [configuration options](#options) can be defined when you add the plugin:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { eleventyImageTransformPlugin } from "@11ty/eleventy-img";
 
@@ -115,11 +120,13 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 - {% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}During local development (when using `--serve`), images are optimized when requested in the browser. Read more about [`transformOnRequest`](#optimize-images-on-request).
 - The `sizes` attribute must be present if `widths` has more than one entry ([MDN](https://developer.mozilla.org/en-US/docs/Web/API/HTMLImageElement/sizes)). The `eleventyImageTransformPlugin` does not provide a default value for `sizes`, so it must be explicitly included in the HTML attribute or with `htmlOptions.imgAttributes`.
-	- {% addedin "Image v6.0.0" %}When using `loading="lazy"` and `sizes` is not supplied in markup — we’ll use `sizes="auto"` automatically. _Related [#207](https://github.com/11ty/image/issues/207)_.
+  - {% addedin "Image v6.0.0" %}When using `loading="lazy"` and `sizes` is not supplied in markup — we’ll use `sizes="auto"` automatically. _Related [#207](https://github.com/11ty/image/issues/207)_.
 
 ## Build Performance <span id="build-cost"></span><span id="build-cost-🧰"></span>
 
@@ -266,8 +273,8 @@ await Image("./test/bio-2017.jpg", {
 
 Development build performance improvement to [optimize images when they are requested in the browser](#optimize-images-on-request).
 
-* `transformOnRequest: false` (default)
-* `transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve"` (default for HTML Transform)
+- `transformOnRequest: false` (default)
+- `transformOnRequest: process.env.ELEVENTY_RUN_MODE === "serve"` (default for HTML Transform)
 
 You can use [`transformOnRequest` with Shortcodes too](./image-shortcodes.md#boost-performance-optimize-images-on-request).
 
@@ -304,8 +311,8 @@ Further customize the markup with `htmlOptions` {% addedin "Image v6.0.0" %}:
 
 {% addedin "Image v4.0.0" %}Rotates the image to enforce the correct orientation set in EXIF metadata.
 
-* `fixOrientation: false` (default)
-* `fixOrientation: true`
+- `fixOrientation: false` (default)
+- `fixOrientation: true`
 
 ### Custom Filenames
 
@@ -400,7 +407,6 @@ If you’re using the Image HTML Transform, we recommended **_not_** to define `
 
 - `useCache: true` (default)
 - `useCache: false` to bypass the cache and generate a new image every time.
-
 
 ### Advanced control of Sharp image processor
 

@@ -4,8 +4,10 @@ eleventyNavigation:
   parent: Blog
 ignoreSupporters: true
 ---
+
 It is my absolute honor to announce that the very first Eleventy 1.0 Beta release is now available on the beta channel. You can try it out now:
 
+<!-- prettier-ignore-start -->
 {% highlight "bash" %}
 # Local project
 npm install @11ty/eleventy@beta
@@ -13,6 +15,8 @@ npm install @11ty/eleventy@beta
 # Global install
 npm install @11ty/eleventy@beta -g
 {% endhighlight %}
+
+<!-- prettier-ignore-end -->
 
 ## The Big Features:
 

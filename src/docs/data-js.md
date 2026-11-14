@@ -10,8 +10,6 @@ relatedLinks:
 
 # JavaScript Data Files {% addedin "0.5.3" %}
 
-{% tableofcontents %}
-
 The following applies to both:
 
 - [Global Data Files](/docs/data-global/) (`*.js` inside of your `_data` directory)
@@ -21,22 +19,29 @@ The following applies to both:
 
 You can export data from a JavaScript file to add data, too. This allows you to execute arbitrary code to fetch data at build time.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default ["user1", "user2"];
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 If you return a `function`, we’ll use the return value from that function.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function () {
 	return ["user1", "user2"];
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 We use `await` on the return value, so you can return a promise and/or use an `async function`, too. Fetch your data asynchronously at build time!
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 async function fetchUserData(username) {
 	// do some async things
@@ -50,6 +55,8 @@ export default async function () {
 	return [user1, user2];
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Fetching data from a remote API
@@ -60,6 +67,7 @@ You’ll want to use [Eleventy’s Fetch plugin](/docs/plugins/fetch/) to reques
 
 {% addedin "1.0.0" %} When using a callback function in your JavaScript Data Files, Eleventy will now supply any global data already processed [via the Configuration API (`eleventyConfig.addGlobalData`)](/docs/data-global-custom/) as well as the [`eleventy` global variable](/docs/data-eleventy-supplied/#eleventy-variable).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (configData) {
 	if (configData.eleventy.env.source === "cli") {
@@ -69,6 +77,8 @@ export default function (configData) {
 	return "I am running programmatically via a script";
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 ## Examples
@@ -82,6 +92,7 @@ export default function (configData) {
 
 This “Hello World” GraphQL example works out of the box with Eleventy:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { graphql, buildSchema } from "graphql";
 
@@ -99,6 +110,8 @@ export default function () {
 	return graphql(schema, "{ hello }", root);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Example: Exposing Environment Variables
@@ -110,6 +123,8 @@ You can expose environment variables to your templates by utilizing [Node.js’ 
 Start by creating a [Global Data file](/docs/data-global/) (`*.js` inside of your `_data` directory) and export the environment variables for use in a template:
 
 <div class="codetitle codetitle-right-md">_data/myProject.js</div>
+
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function () {
 	return {
@@ -117,6 +132,8 @@ export default function () {
 	};
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 Saving this as `myProject.js` in your global data directory (by default, this is `_data/`) gives you access to the `myProject.environment` variable in your templates.
@@ -129,6 +146,7 @@ When `MY_ENVIRONMENT` is set, the value from `myProject.environment` will be glo
 
 Working from our [Inline CSS Quick Tip](/docs/quicktips/inline-css/), we can modify the output to only minify our CSS if we’re building for production:
 
+<!-- prettier-ignore-start -->
 {% set codeBlock %}{% raw %}
 <style>
 {% if myProject.environment == "production" %}
@@ -138,4 +156,6 @@ Working from our [Inline CSS Quick Tip](/docs/quicktips/inline-css/), we can mod
 {% endif %}
 </style>
 {% endraw %}{% endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}

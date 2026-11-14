@@ -9,8 +9,6 @@ excludeFromSidebar: true
 
 # Inclusive Language Plugin
 
-{% tableofcontents %}
-
 An Eleventy linter plugin to check for inclusive language in markdown files. Inspired by [_CSS Tricks’ Words to Avoid in Educational Writing_](https://css-tricks.com/words-avoid-educational-writing/). No browser/client JavaScript here—everything is this plugin is done at build-time.
 
 - [GitHub](https://github.com/11ty/eleventy-plugin-inclusive-language).
@@ -42,6 +40,7 @@ npm install @11ty/eleventy-plugin-inclusive-language
 
 Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import inclusiveLangPlugin from "@11ty/eleventy-plugin-inclusive-language";
 
@@ -49,6 +48,8 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(inclusiveLangPlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}You’re only allowed one `module.exports` in your configuration file, so make sure you only copy the `require` and the `addPlugin` lines above!{% endcallout %}
@@ -57,6 +58,7 @@ export default function (eleventyConfig) {
 
 Optionally pass in an options object as the second argument to `addPlugin` to further customize this plugin.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import inclusiveLangPlugin from "@11ty/eleventy-plugin-inclusive-language";
 
@@ -70,4 +72,6 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

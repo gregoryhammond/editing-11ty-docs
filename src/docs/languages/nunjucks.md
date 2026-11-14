@@ -13,18 +13,16 @@ tags:
 layout: layouts/langs.njk
 ---
 
-{% tableofcontents "open" %}
-
 | Eleventy Short Name | File Extension | npm Package                                       |
 | ------------------- | -------------- | ------------------------------------------------- |
 | `njk`               | `.njk`         | [`nunjucks`](https://mozilla.github.io/nunjucks/) |
 
-| Eleventy version | `nunjucks` version |
-| --- | --- |
-| `@11ty/eleventy@0.x` | `nunjucks@3.x` |
-| `@11ty/eleventy@1.x` | `nunjucks@3.x` |
-| `@11ty/eleventy@2.x` | `nunjucks@3.x` |
-| `@11ty/eleventy@3.x` | `nunjucks@3.x` |
+| Eleventy version     | `nunjucks` version |
+| -------------------- | ------------------ |
+| `@11ty/eleventy@0.x` | `nunjucks@3.x`     |
+| `@11ty/eleventy@1.x` | `nunjucks@3.x`     |
+| `@11ty/eleventy@2.x` | `nunjucks@3.x`     |
+| `@11ty/eleventy@3.x` | `nunjucks@3.x`     |
 
 You can override a `.njk` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
@@ -36,6 +34,7 @@ We use [Nunjucks defaults for all environment options](https://mozilla.github.io
 
 It’s recommended to use the Configuration API to override the default Nunjucks options.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	eleventyConfig.setNunjucksEnvironmentOptions({
@@ -44,6 +43,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Advanced: Use your Nunjucks Environment {% addedin "0.3.0" %}
@@ -52,6 +53,7 @@ While it is preferred and simpler to use the Options-specific API method above (
 
 {% callout "warn" %}Not compatible with <code>setNunjucksEnvironmentOptions</code> above—this method will <em>override</em> any configuration set there.{% endcallout %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import Nunjucks from "nunjucks";
 
@@ -63,22 +65,24 @@ export default function (eleventyConfig) {
 	eleventyConfig.setLibrary("njk", nunjucksEnvironment);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features
 
-| Feature                                                           | Syntax                                                                                                                                                                                                                                                                        |
-| ----------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ✅ Includes                                                       | `{% raw %}{% include 'included.njk' %}{% endraw %}` looks in `_includes/included.njk`. Filenames must be in quotes. Does not process front matter in the include file.                                                                                                        |
-| ✅ Includes (Relative Path) {% addedin "0.9.0" %}                 | Relative paths use `./` (template’s directory) or `../` (template’s parent directory).<br><br>Example: `{% raw %}{% include './included.njk' %}{% endraw %}` looks for `included.njk` in the template’s current directory. Does not process front matter in the include file. |
-| ✅ Extends                                                        | `{% raw %}{% extends 'base.njk' %}{% endraw %}` looks in `_includes/base.njk`. Does not process front matter in the include file.                                                                                                                                             |
-| ✅ Extends (Relative Path) {% addedin "0.9.0" %}                  | Relative paths use `./` (template’s directory) or `../` (template’s parent directory)<br><br>Example: `{% raw %}{% extends './base.njk' %}{% endraw %}` looks for `base.njk` in the template’s current directory. Does not process front matter in the include file.          |
-| ✅ Imports                                                        | `{% raw %}{% import 'macros.njk' %}{% endraw %}` looks in `_includes/macros.njk`. Does not process front matter in the include file.                                                                                                                                          |
-| ✅ Imports (Relative Path) {% addedin "0.9.0" %}                  | Relative paths use `./` (template’s directory) or `../` (template’s parent directory):<br>`{% raw %}{% import './macros.njk' %}{% endraw %}` looks for `macros.njk` in the template’s current directory. Does not process front matter in the include file.                   |
-| ✅ Filters                                                        | `{% raw %}{% name \| filterName %}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                                                                                                                                    |
-| ✅ [Universal Filters](/docs/filters/) | `{% raw %}{% name \| filterName %}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                                                                                                                                    |
-| ✅ [Custom Tags](/docs/custom-tags/)                              | `{% raw %}{% uppercase name %}{% endraw %}` Read more about [Custom Tags](/docs/custom-tags/). {% addedin "0.5.0" %}                                                                                                                                                          |
-| ✅ [Shortcodes](/docs/shortcodes/)                                | `{% raw %}{% uppercase name %}{% endraw %}` Read more about [Shortcodes](/docs/shortcodes/). {% addedin "0.5.0" %}                                                                                                                                                            |
+| Feature                                           | Syntax                                                                                                                                                                                                                                                                        |
+| ------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ Includes                                       | `{% raw %}{% include 'included.njk' %}{% endraw %}` looks in `_includes/included.njk`. Filenames must be in quotes. Does not process front matter in the include file.                                                                                                        |
+| ✅ Includes (Relative Path) {% addedin "0.9.0" %} | Relative paths use `./` (template’s directory) or `../` (template’s parent directory).<br><br>Example: `{% raw %}{% include './included.njk' %}{% endraw %}` looks for `included.njk` in the template’s current directory. Does not process front matter in the include file. |
+| ✅ Extends                                        | `{% raw %}{% extends 'base.njk' %}{% endraw %}` looks in `_includes/base.njk`. Does not process front matter in the include file.                                                                                                                                             |
+| ✅ Extends (Relative Path) {% addedin "0.9.0" %}  | Relative paths use `./` (template’s directory) or `../` (template’s parent directory)<br><br>Example: `{% raw %}{% extends './base.njk' %}{% endraw %}` looks for `base.njk` in the template’s current directory. Does not process front matter in the include file.          |
+| ✅ Imports                                        | `{% raw %}{% import 'macros.njk' %}{% endraw %}` looks in `_includes/macros.njk`. Does not process front matter in the include file.                                                                                                                                          |
+| ✅ Imports (Relative Path) {% addedin "0.9.0" %}  | Relative paths use `./` (template’s directory) or `../` (template’s parent directory):<br>`{% raw %}{% import './macros.njk' %}{% endraw %}` looks for `macros.njk` in the template’s current directory. Does not process front matter in the include file.                   |
+| ✅ Filters                                        | `{% raw %}{% name \| filterName %}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                                                                                                                                    |
+| ✅ [Universal Filters](/docs/filters/)            | `{% raw %}{% name \| filterName %}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                                                                                                                                    |
+| ✅ [Custom Tags](/docs/custom-tags/)              | `{% raw %}{% uppercase name %}{% endraw %}` Read more about [Custom Tags](/docs/custom-tags/). {% addedin "0.5.0" %}                                                                                                                                                          |
+| ✅ [Shortcodes](/docs/shortcodes/)                | `{% raw %}{% uppercase name %}{% endraw %}` Read more about [Shortcodes](/docs/shortcodes/). {% addedin "0.5.0" %}                                                                                                                                                            |
 
 ## Filters
 
@@ -86,6 +90,7 @@ Filters are used to transform or modify content. You can add Nunjucks specific f
 
 Read more about [Nunjucks Filter syntax](https://mozilla.github.io/nunjucks/templating.html#filters).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
   // Nunjucks Filter
@@ -98,6 +103,8 @@ export default function(eleventyConfig) {
   eleventyConfig.addFilter("myFilter", function(value) { /* … */ });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Usage
@@ -112,6 +119,7 @@ export default function(eleventyConfig) {
 
 ### Multiple Filter Arguments
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	// Nunjucks Filter
@@ -123,6 +131,8 @@ export default function (eleventyConfig) {
 	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}
@@ -137,6 +147,7 @@ export default function (eleventyConfig) {
 
 By default, almost all templating engines are synchronous. Nunjucks supports some asynchronous behavior, like filters. Here’s how that works:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	eleventyConfig.addNunjucksAsyncFilter(
@@ -149,12 +160,15 @@ export default function (eleventyConfig) {
 	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 The last argument here is the callback function, the first argument of which is the error object and the second is the result data. Use this filter like you would any other: `{% raw %}{{ myValue | myAsyncFilter }}{% endraw %}`.
 
 Here’s a Nunjucks example with 2 arguments:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	eleventyConfig.addNunjucksAsyncFilter(
@@ -167,6 +181,8 @@ export default function (eleventyConfig) {
 	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Multi-argument filters in Nunjucks are called like this: `{% raw %}{{ myValue1 | myAsyncFilter(myValue2) }}{% endraw %}`.
@@ -177,6 +193,7 @@ Shortcodes are reusable bits of content. You can add Nunjucks specific shortcode
 
 ### Single Shortcode
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
   // Nunjucks Shortcode
@@ -191,6 +208,8 @@ export default function(eleventyConfig) {
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Nunjucks Template Usage
@@ -214,6 +233,7 @@ export default function(eleventyConfig) {
 
 ### Paired Shortcode
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
   // Nunjucks Shortcode
@@ -229,6 +249,8 @@ export default function(eleventyConfig) {
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Nunjucks Usage
@@ -259,6 +281,7 @@ Note that you can put any Nunjucks tags or content inside the `{% raw %}{% user 
 
 Creates a single argument object to pass to the shortcode.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	// Nunjucks Shortcode
@@ -270,6 +293,8 @@ ${user.twitter ? `<div class="user_twitter">@${user.twitter}</div>` : ""}
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Nunjucks Usage
@@ -318,6 +343,7 @@ Importantly, this syntax means that any of the arguments can be optional (withou
 
 Note that the configuration methods here to add asynchronous shortcodes are different than their synchronous counterparts. This is just another gentle reminder here that these API methods are pretty verbose and it’s probably easier to add a [Universal shortcode](/docs/shortcodes/) instead.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	eleventyConfig.addNunjucksAsyncShortcode(
@@ -335,6 +361,8 @@ export default function (eleventyConfig) {
 	);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Nunjucks Usage
@@ -392,11 +420,14 @@ You can access `page`, `eleventy`, `ctx`, and `env` in filters and shortcodes. R
 
 Nunjucks provides a custom way to [add globals](https://mozilla.github.io/nunjucks/api.html#addglobal) to templates. These can be any arbitrary JavaScript: functions, variables, etc. Note that this is not async-friendly (Nunjucks does not support `await` inside of templates).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	eleventyConfig.addNunjucksGlobal("fortythree", 43);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}
@@ -407,6 +438,7 @@ export default function (eleventyConfig) {
 
 {% endraw %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	eleventyConfig.addNunjucksGlobal("fortytwo", function () {
@@ -414,6 +446,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}

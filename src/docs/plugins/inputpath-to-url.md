@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # InputPath to URL {% addedin "v3.0.0-alpha.5" %}
 
-{% tableofcontents %}
-
 This plugin allows you to use file system paths in your HTML and they will be automatically transformed to their output URLs. Very useful for robust hyperlinking allowing you to change your output URLs without breaking content links! Works out of the box with [`permalink` remapping](/docs/permalinks/), the [HTML `<base>` plugin](/docs/plugins/html-base/), etc.
 
 {% callout "info", "md" -%}
@@ -28,43 +26,67 @@ This uses an [Eleventy Transform](/docs/config/#transforms) to modify the output
 <seven-minute-tabs persist sync class="tabs-flush" autoheight>
   {% renderFile "./src/_includes/syntax-chooser-tablist.11ty.js", {id: "inputpathtourl", additions: "html,md"} %}
   <div id="inputpathtourl-html" role="tabpanel">
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <a href="my-template.md">Home</a>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="inputpathtourl-md" role="tabpanel">
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 [Home](my-template.md)
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
   </div>
   <div id="inputpathtourl-liquid" role="tabpanel">
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <a href="my-template.md">Home</a>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="inputpathtourl-njk" role="tabpanel">
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <a href="my-template.md">Home</a>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
   </div>
   <div id="inputpathtourl-js" role="tabpanel">
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 export default function (data) {
 	return `<a href="my-template.md">Home</a>`;
 };
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
   </div>
   <div id="inputpathtourl-cjs" role="tabpanel">
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 module.exports = function (data) {
   return `<a href="my-template.md">Home</a>`;
 };
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
   </div>
 </seven-minute-tabs>

@@ -7,12 +7,10 @@ relatedTitle: Template Language—JSX
 layout: layouts/langs.njk
 ---
 
-<!-- {% tableofcontents "open" %} -->
-
-| Eleventy Short Name                       | File Extension | npm Package                       |
-| ----------------------------------------- | -------------- | --------------------------------- |
-| `11ty.jsx`                                | `.11ty.jsx`    | [`tsx`]({{ externalLinks.tsxNodeUse }})  |
-| [`11ty.tsx`](/docs/languages/typescript/) | `.11ty.tsx`    | [`tsx`]({{ externalLinks.tsxNodeUse }})  |
+| Eleventy Short Name                       | File Extension | npm Package                             |
+| ----------------------------------------- | -------------- | --------------------------------------- |
+| `11ty.jsx`                                | `.11ty.jsx`    | [`tsx`]({{ externalLinks.tsxNodeUse }}) |
+| [`11ty.tsx`](/docs/languages/typescript/) | `.11ty.tsx`    | [`tsx`]({{ externalLinks.tsxNodeUse }}) |
 
 - Related languages: [TypeScript](/docs/languages/typescript/), [JavaScript](/docs/languages/javascript/), [MDX](/docs/languages/mdx/), [Custom](/docs/languages/custom/)
 - _[Front matter](/docs/data-frontmatter/) is not supported in JSX files. Use a `data` export instead._
@@ -24,6 +22,8 @@ layout: layouts/langs.njk
 {% addedin "3.0.0-alpha.11" %}Here we use [`tsx`]({{ externalLinks.tsxNodeUse }}) to process JSX files. If you’re looking for TypeScript only, there are [simpler methods in Node.js](/docs/languages/typescript/).
 
 <div class="codetitle">eleventy.config.js</div>
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 import "tsx/esm";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -45,15 +45,17 @@ export default function (eleventyConfig) {
 	eleventyConfig.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
 }
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 Now Eleventy will find and process `**/*.11ty.{jsx,ts,tsx}` files.
 
 ## Community Contributions <span id="alternative-approaches"></span>
 
-* {% indieweblink "eleventy-hast-jsx", "https://github.com/j-f1/eleventy-hast-jsx" %}
-* {% indieweblink "eleventy-plugin-react-ssr", "https://github.com/scinos/eleventy-plugin-react-ssr" %}
-* {% indieweblink "JetBrains: Better 11ty Development with Tooling", "https://www.jetbrains.com/guide/javascript/tutorials/eleventy-tsx/" %}
+- {% indieweblink "eleventy-hast-jsx", "https://github.com/j-f1/eleventy-hast-jsx" %}
+- {% indieweblink "eleventy-plugin-react-ssr", "https://github.com/scinos/eleventy-plugin-react-ssr" %}
+- {% indieweblink "JetBrains: Better 11ty Development with Tooling", "https://www.jetbrains.com/guide/javascript/tutorials/eleventy-tsx/" %}
 
 ### Using `esbuild-register`
 
@@ -62,6 +64,8 @@ If you’d like an approach that works with CommonJS and Eleventy 2.0, you can u
 Your config file might look like this:
 
 {% codetitle "eleventy.config.js (CommonJS)" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 const { register } = require("esbuild-register/dist/node");
 
@@ -74,11 +78,16 @@ module.exports = function(eleventyConfig) {
 	});
 };
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 Now run Eleventy and tell it to process `11ty.jsx` and `11ty.tsx` files:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npx @11ty/eleventy --formats=11ty.jsx,11ty.tsx
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}

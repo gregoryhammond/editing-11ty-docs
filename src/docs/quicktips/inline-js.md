@@ -16,6 +16,7 @@ This tip works great if you have small JS utilities that you’d like to have in
 
 Add the following `jsmin` filter to your Eleventy Config file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { minify } from "terser";
 
@@ -32,6 +33,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Create your JavaScript File

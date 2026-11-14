@@ -5,6 +5,7 @@ eleventyNavigation:
   order: 10
   excerpt: Create a template or layout that only lives in your configuration file.
 ---
+
 # Virtual Templates {% addedin "3.0.0-alpha.15" %}
 
 In addition to template files in your input directory, Eleventy can also process virtual templates defined in your configuration file (or plugins). Related [GitHub #1612](https://github.com/11ty/eleventy/issues/1612).
@@ -17,14 +18,15 @@ The [RSS plugin offers a virtual template](/docs/plugins/rss.md#virtual-template
 eleventyConfig.addTemplate(virtualPath, content, data = {});
 ```
 
-* `virtualPath`: used to determine the template language and data cascade for this template. This path is relative to your project’s input directory.
-* `content`: usually a string, but maybe JavaScript (if using an `11ty.js` template). Can include front matter if the template language supports it.
-* `data`: a data object tied to the template. A little more ergonomic than front matter but functionally the same.
+- `virtualPath`: used to determine the template language and data cascade for this template. This path is relative to your project’s input directory.
+- `content`: usually a string, but maybe JavaScript (if using an `11ty.js` template). Can include front matter if the template language supports it.
+- `data`: a data object tied to the template. A little more ergonomic than front matter but functionally the same.
 
 ## Example
 
 ### Markdown, HTML (via Liquid) Layout
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	// Create content templates Files
@@ -36,12 +38,15 @@ export default function(eleventyConfig) {
 	eleventyConfig.addTemplate("_includes/virtual.html", `<!-- Layout -->{% raw %}{{ content }}{% endraw %}`);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### JavaScript
 
 Any of the JavaScript shapes on [`11ty.js` templates](/docs/languages/javascript.md) are also supported here.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	// Create content templates Files
@@ -50,4 +55,6 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

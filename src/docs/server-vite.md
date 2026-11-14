@@ -6,8 +6,6 @@ eleventyNavigation:
 
 # Vite {% indieavatar "https://vite.dev/" %}
 
-{% tableofcontents %}
-
 - [`eleventy-plugin-vite` on GitHub](https://github.com/11ty/eleventy-plugin-vite)
 
 A plugin to use [Vite](https://vite.dev/) with Eleventy 2.0+.
@@ -26,11 +24,15 @@ A plugin to use [Vite](https://vite.dev/) with Eleventy 2.0+.
 
 ## Installation
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-vite
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
@@ -38,14 +40,16 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(EleventyVitePlugin);
 };
 {% endset %}
-{% include "snippets/configDefinition.njk" %}
 
+<!-- prettier-ignore-end -->
+{% include "snippets/configDefinition.njk" %}
 
 <details>
 <summary>Expand for full list of options</summary>
 
 View the [full list of Vite Configuration options](https://vite.dev/config/).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import EleventyVitePlugin from "@11ty/eleventy-plugin-vite";
 
@@ -84,6 +88,8 @@ export default function (eleventyConfig) {
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 See the full list of [`serverOptions` on the Dev Server documentation](/docs/dev-server/).

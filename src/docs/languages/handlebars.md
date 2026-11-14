@@ -13,19 +13,17 @@ layout: layouts/langs.njk
 
 [Handlebars](https://handlebarsjs.com/) is a template language that emphasizes simplicity and speed. As the name suggests, it's inspired by and a superset of the [Mustache](/docs/languages/mustache/) template language. It adds [several features](https://github.com/handlebars-lang/handlebars.js#differences-between-handlebarsjs-and-mustache) that Mustache doesn't have, like nested paths: you can refer to `{% raw %}{{variable.member}}{% endraw %}` in Handlebars, but not in Mustache.
 
-{% tableofcontents "open" %}
-
-| Eleventy Short Name | File Extension | npm Package                                                |
-| ------------------- | -------------- | ---------------------------------------------------------- |
+| Eleventy Short Name | File Extension | npm Package                                             |
+| ------------------- | -------------- | ------------------------------------------------------- |
 | `hbs`               | `.hbs`         | [`handlebars`](https://github.com/wycats/handlebars.js) |
 
-| Eleventy or Plugin version | `handlebars` version |
-| --- | --- |
-| `@11ty/eleventy@0.x` | `handlebars@4.x` |
-| `@11ty/eleventy@1.x` | `handlebars@4.x` |
-| `@11ty/eleventy@2.x` | `handlebars@4.x` |
-| `@11ty/eleventy@3.x` and newer | N/A |
-| `@11ty/eleventy-plugin-handlebars@1.x` | `handlebars@4.x` |
+| Eleventy or Plugin version             | `handlebars` version |
+| -------------------------------------- | -------------------- |
+| `@11ty/eleventy@0.x`                   | `handlebars@4.x`     |
+| `@11ty/eleventy@1.x`                   | `handlebars@4.x`     |
+| `@11ty/eleventy@2.x`                   | `handlebars@4.x`     |
+| `@11ty/eleventy@3.x` and newer         | N/A                  |
+| `@11ty/eleventy-plugin-handlebars@1.x` | `handlebars@4.x`     |
 
 You can override a `.hbs` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
@@ -33,15 +31,19 @@ You can override a `.hbs` file’s template engine. Read more at [Changing a Tem
 
 The `hbs` templating language was moved out of Eleventy core in v3 and now requires a plugin installation.
 
-* [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
+- [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-handlebars
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Add to your configuration file (ESM version shown):
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
 
@@ -49,11 +51,13 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(handlebarsPlugin);
 }
 {% endset %}
-{% include "snippets/configDefinition.njk" %}
 
+<!-- prettier-ignore-end -->
+{% include "snippets/configDefinition.njk" %}
 
 Use more options:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import handlebars from "handlebars";
 import handlebarsPlugin from "@11ty/eleventy-plugin-handlebars";
@@ -65,17 +69,19 @@ export default function (eleventyConfig) {
 	});
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features
 
-| Feature                                                           | Syntax                                                                                                                                                                                                    |
-| ----------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| ✅ Partials                                                       | `{% raw %}{{> user}}{% endraw %}` looks for `_includes/user.hbs`. Does not process front matter in the include file.                                                                                      |
-| 🚫 Partials (Relative Path)                                       | **Not yet supported**: `{% raw %}{{> ./user}}{% endraw %}` looks for `user.hbs` in the template’s current directory.                                                                                      |
-| ✅ Helpers (Custom Tags)                                          | `{% raw %}{{ helperName myObject }}{% endraw %}` Handlebars calls them Helpers, but Eleventy calls them Shortcodes. Read more about [Shortcodes](/docs/shortcodes/). |
-| ✅ [Filters](/docs/filters/) | `{% raw %}{{ filterName myObject }}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                                                               |
-| ✅ [Shortcodes](/docs/shortcodes/)                                | `{% raw %}{{{ uppercase name }}}{% endraw %}` Read more about [Shortcodes](/docs/shortcodes/). {% addedin "0.5.0" %}                                                                                      |
+| Feature                            | Syntax                                                                                                                                                               |
+| ---------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ✅ Partials                        | `{% raw %}{{> user}}{% endraw %}` looks for `_includes/user.hbs`. Does not process front matter in the include file.                                                 |
+| 🚫 Partials (Relative Path)        | **Not yet supported**: `{% raw %}{{> ./user}}{% endraw %}` looks for `user.hbs` in the template’s current directory.                                                 |
+| ✅ Helpers (Custom Tags)           | `{% raw %}{{ helperName myObject }}{% endraw %}` Handlebars calls them Helpers, but Eleventy calls them Shortcodes. Read more about [Shortcodes](/docs/shortcodes/). |
+| ✅ [Filters](/docs/filters/)       | `{% raw %}{{ filterName myObject }}{% endraw %}` Read more about [Filters](/docs/filters/).                                                                          |
+| ✅ [Shortcodes](/docs/shortcodes/) | `{% raw %}{{{ uppercase name }}}{% endraw %}` Read more about [Shortcodes](/docs/shortcodes/). {% addedin "0.5.0" %}                                                 |
 
 ## Helpers
 
@@ -101,6 +107,7 @@ Shortcodes are basically reusable bits of content. Handlebars makes use of exist
 
 {% callout "warn", "md" %}Asynchronous shortcodes are not supported by Handlebars. Read more at [this Handlebars issue](https://github.com/wycats/handlebars.js/issues/717).{% endcallout %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
   eleventyConfig.addShortcode("user", function(name, twitterUsername) {
@@ -111,6 +118,8 @@ export default function(eleventyConfig) {
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Usage
@@ -138,6 +147,7 @@ export default function(eleventyConfig) {
 
 {% callout "warn", "md" %}Asynchronous shortcodes are not supported by Handlebars. Read more at [this Handlebars issue](https://github.com/wycats/handlebars.js/issues/717).{% endcallout %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
   eleventyConfig.addPairedShortcode("user", function(bioContent, name, twitterUsername) {
@@ -149,6 +159,8 @@ export default function(eleventyConfig) {
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 #### Usage

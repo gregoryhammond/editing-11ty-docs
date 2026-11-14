@@ -8,8 +8,6 @@ eleventyNavigation:
 
 # Major Version Upgrade Helper
 
-{% tableofcontents %}
-
 - [Source code on GitHub](https://github.com/11ty/eleventy-upgrade-help)
 - [Sample project using the Upgrade Helper plugin](https://github.com/11ty/demo-eleventy-upgrade-help)
 
@@ -21,22 +19,32 @@ Upgrade your project’s version of Eleventy with `npm` _before_ using this help
 
 Upgrading from Eleventy v0 to v1:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy@1
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Or, upgrading from Eleventy v1 to v2:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy@2
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Or, upgrading from Eleventy v2 to v3:
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy@3
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 ### <span class="numberflag"><span class="sr-only">Step</span> 2</span> Install the Helper
@@ -45,29 +53,39 @@ Then, install the helper plugin. The major version will match the version of Ele
 
 Upgrading from Eleventy v0 to v1:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-upgrade-help@1
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Or, upgrading from Eleventy v1 to v2:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-upgrade-help@2
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Or, upgrading from Eleventy v2 to v3:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-upgrade-help@3
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 ### <span class="numberflag"><span class="sr-only">Step</span> 3</span> Add to Configuration File
 
 Add to your configuration file (probably `eleventy.config.js` or `.eleventy.js`):
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import UpgradeHelper from "@11ty/eleventy-upgrade-help";
 
@@ -76,6 +94,8 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(UpgradeHelper);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### <span class="numberflag"><span class="sr-only">Step</span> 4</span> Run your Build

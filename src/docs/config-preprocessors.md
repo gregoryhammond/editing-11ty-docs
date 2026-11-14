@@ -9,10 +9,9 @@ eleventyNavigation:
 
 # Preprocessors {% addedin "3.0.0-alpha.17" %}
 
-{% tableofcontents %}
-
 The Preprocessor Configuration API allows you to intercept and modify the content in template files (_not_ [Layouts](/docs/layouts.md)) before they’re processed and rendered by Eleventy.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
   eleventyConfig.addPreprocessor("drafts", "njk,md,liquid", (data, content) => {
@@ -28,14 +27,16 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
-* The first argument is an arbitrary `name` (`String`) used for error messaging.
-* The second argument can be:
-	* a `String` of comma separated file extensions
-	* an `Array<String>` of file extensions
-* Returning `false` will ignores the template in the same way as using [`eleventyConfig.ignores` or `.eleventyignore`](/docs/ignores.md)
-* Returning nothing or `undefined` has no effect (unlike [Transforms](/docs/transforms.md))
+- The first argument is an arbitrary `name` (`String`) used for error messaging.
+- The second argument can be:
+  - a `String` of comma separated file extensions
+  - an `Array<String>` of file extensions
+- Returning `false` will ignores the template in the same way as using [`eleventyConfig.ignores` or `.eleventyignore`](/docs/ignores.md)
+- Returning nothing or `undefined` has no effect (unlike [Transforms](/docs/transforms.md))
 
 {% callout "info", "md" %}Preprocessors run before most [Computed Data](/docs/data-computed.md) is resolved, so `eleventyComputed` values are not available in the `data` argument.{% endcallout %}
 
@@ -49,6 +50,7 @@ Set `draft: true` anywhere in a file’s [data cascade](/docs/data-cascade/) and
 
 You might imagine how this could be extended to add a publishing date feature too: to exclude content from builds before a specific date set in a post’s front matter (or elsewhere in the data cascade).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
   eleventyConfig.addPreprocessor("drafts", "*", (data, content) => {
@@ -58,4 +60,6 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

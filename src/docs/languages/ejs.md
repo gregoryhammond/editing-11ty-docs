@@ -9,19 +9,17 @@ layout: layouts/langs.njk
 
 [EJS](https://ejs.co/), short for _Embedded JavaScript_, is a template language that emphasizes the use of plain JavaScript instead of having its own template syntax. It can be really convenient if you're fluent in JavaScript. As opposed to languages like [Mustache](/docs/languages/mustache/) that bill themselves as 'logic-less', EJS lets you use as much logic as you'd like.
 
-{% tableofcontents "open" %}
-
 | Eleventy Short Name | File Extension | npm Package                                |
 | ------------------- | -------------- | ------------------------------------------ |
 | `ejs`               | `.ejs`         | [`ejs`](https://www.npmjs.com/package/ejs) |
 
-| Eleventy or Plugin version | `ejs` version |
-| --- | --- |
-| `@11ty/eleventy@0.x` | `ejs@2.x` |
-| `@11ty/eleventy@1.x` | `ejs@3.x` |
-| `@11ty/eleventy@2.x` | `ejs@3.x` |
-| `@11ty/eleventy@3.x` and newer | N/A |
-| `@11ty/eleventy-plugin-ejs@1.x` | `ejs@3.x` |
+| Eleventy or Plugin version      | `ejs` version |
+| ------------------------------- | ------------- |
+| `@11ty/eleventy@0.x`            | `ejs@2.x`     |
+| `@11ty/eleventy@1.x`            | `ejs@3.x`     |
+| `@11ty/eleventy@2.x`            | `ejs@3.x`     |
+| `@11ty/eleventy@3.x` and newer  | N/A           |
+| `@11ty/eleventy-plugin-ejs@1.x` | `ejs@3.x`     |
 
 You can override a `.ejs` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
@@ -29,17 +27,21 @@ You can override a `.ejs` file’s template engine. Read more at [Changing a Tem
 
 The `ejs` templating language was moved out of Eleventy core in v3 and now requires a plugin installation.
 
-* [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
+- [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
 Install from npm:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-ejs
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Add to your configuration file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import ejsPlugin from "@11ty/eleventy-plugin-ejs";
 
@@ -47,11 +49,13 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(ejsPlugin);
 }
 {% endset %}
-{% include "snippets/configDefinition.njk" %}
 
+<!-- prettier-ignore-end -->
+{% include "snippets/configDefinition.njk" %}
 
 Use more `ejs` options ([full options list](https://github.com/mde/ejs#options)):
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import ejs from "ejs";
 import ejsPlugin from "@11ty/eleventy-plugin-ejs";
@@ -68,6 +72,8 @@ export default function (eleventyConfig) {
 	});
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features

@@ -9,8 +9,6 @@ communityLinksKey: collections
 overrideCommunityLinks: true
 ---
 
-{% tableofcontents %}
-
 While [pagination](/docs/pagination/) allows you to iterate over a data set to create multiple templates, a collection allows you to group content in interesting ways. A piece of content can be a part of multiple collections, if you assign the same string value to the `tags` key in the front matter.
 
 Take care to note that `tags` have a singular purpose in Eleventy: to construct collections of content. Some blogging platforms use Tags to refer to a hierarchy of labels for the content (e.g. a [tag cloud](https://en.wikipedia.org/wiki/Tag_cloud)).
@@ -20,12 +18,16 @@ Take care to note that `tags` have a singular purpose in Eleventy: to construct 
 For a blog site, your individual post files may use a tag called `post`, but it can be whatever you want. In this example, `mypost.md` has a single tag `post`:
 
 {% codetitle "Markdown", "Syntax" %}
+
+<!-- prettier-ignore-start -->
 {% set codeBlock %}
 ---
 tags: post
 title: Hot Take—Social Media is Considered Harmful
 ---
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 This will place this `mypost.md` into the `post` collection with all other pieces of content sharing the `post` tag. To reference this collection and make a list of all posts, use the `collections` object in any template:
@@ -65,6 +67,8 @@ By default Eleventy puts all of your content (independent of whether or not it h
 In front matter (or further upstream in the data cascade), set the `eleventyExcludeFromCollections` option to true to opt out of specific pieces of content added to all collections (including `collections.all`, collections set using tags, or collections added from the Configuration API in your config file). Useful for your RSS feed, `sitemap.xml`, custom templated `.htaccess` files, et cetera.
 
 {% codetitle "excluded.md" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 eleventyExcludeFromCollections: true
@@ -73,10 +77,13 @@ tags: post
 
 This will not be available in `collections.all` or `collections.post`.
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 {% addedin "3.0.0-alpha.1" %} `eleventyExcludeFromCollections` can now also accept an array of tag names:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 eleventyExcludeFromCollections: ["post"]
@@ -84,6 +91,8 @@ eleventyExcludeFromCollections: ["post"]
 
 This will be available in `collections.all` but not `collections.post`.
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 ## Add to a Collection using Tags
@@ -92,39 +101,49 @@ You can use a single tag, as in the above example OR you can use any number of t
 
 ### A single tag: cat
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 tags: cat
 ---
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 This content would show up in the template data inside of `collections.cat`.
 
 ### Using multiple words in a single tag
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 tags: cat and dog
 ---
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 If you use multiple words for one tag you can access the content by the following syntax `collections['cat and dog']`.
 
 ### Multiple tags, single line
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 tags: ["cat", "dog"]
 ---
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 This content would show up in the template data inside of `collections.cat` and `collections.dog`.
 
 ### Multiple tags, multiple lines
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 tags:
@@ -132,6 +151,8 @@ tags:
   - dog
 ---
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 This content would show up in the template data inside of `collections.cat` and `collections.dog`.
@@ -140,11 +161,14 @@ This content would show up in the template data inside of `collections.cat` and 
 
 As of Eleventy 1.0, the [Data Cascade](/docs/data-cascade/) is combined using [deep data merge](/docs/data-deep-merge/) by default, which means tags are merged together with tags assigned higher in the data cascade (the Arrays are combined). To redefine `tags` in the front matter use [the `override:` prefix](/docs/data-deep-merge/#using-the-override-prefix):
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 override:tags: []
 ---
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 This content would not show up in any of the collections it was added to with `tags` higher up in the data cascade.
@@ -160,6 +184,7 @@ Note in the above example that we output the `post.data.title` value? Similarly,
 - `rawInput`: the raw input of the template (before any processing). This does _not_ include front matter. {% addedin "v3.0.0-alpha.1" %} _(Related: [#1206](https://github.com/11ty/eleventy/issues/1206))_
 - `content`: the rendered content of this template. This does _not_ include layout wrappers. {% addedin "2.0.0-canary.19" %}
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 {
   page: {
@@ -175,6 +200,8 @@ Note in the above example that we output the `post.data.title` value? Similarly,
 {% raw %}  rawInput: '<h1>{{ title }}</h1>\n\n<p>This is text content…',{% endraw %}
 }
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("json") | safe }}
 
 _Backwards compatibility notes:_
@@ -193,12 +220,15 @@ The default collection sorting algorithm sorts in ascending order using:
 
 For example, assume I only write blog posts on New Years Day:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 posts/postA.md (created on 2008-01-01)
 posts/postB.md (created on 2008-01-01)
 posts/post3.md (created on 2007-01-01)
 another-posts/post1.md (created on 2011-01-01)
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("text") | safe }}
 
 This collection would be sorted like this:
@@ -225,6 +255,7 @@ To sort descending in your template, you can use a filter to reverse the sort or
 
 This applies any time you use <code>reverse</code>, for example in a custom shortcode:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	eleventyConfig.addShortcode("myShortcode", function (aCollection){
@@ -233,24 +264,29 @@ export default function (eleventyConfig) {
 	})
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Instead of `reverse` use:
 
-* <a href="https://doesitmutate.xyz/toreversed/">JavaScript’s <code>.toReversed()</code> method</a> (Node 20+)
-* Create your own new array using <a href="https://doesitmutate.xyz/toreversed/">JavaScript <code>.filter(entry => entry).reverse()</code></a>
-* <a href="https://liquidjs.com/filters/reverse.html">Liquid’s <code>reverse</code> filter</a>
-* <a href="https://mozilla.github.io/nunjucks/templating.html#reverse">Nunjucks’ <code>reverse</code> filter</a>
+- <a href="https://doesitmutate.xyz/toreversed/">JavaScript’s <code>.toReversed()</code> method</a> (Node 20+)
+- Create your own new array using <a href="https://doesitmutate.xyz/toreversed/">JavaScript <code>.filter(entry => entry).reverse()</code></a>
+- <a href="https://liquidjs.com/filters/reverse.html">Liquid’s <code>reverse</code> filter</a>
+- <a href="https://mozilla.github.io/nunjucks/templating.html#reverse">Nunjucks’ <code>reverse</code> filter</a>
 
 ### Overriding Content Dates
 
 You can modify how a piece of content is sorted in a collection by changing its default `date`. [Read more at Content Dates](/docs/dates/).
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 date: 2016-01-01
 ---
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 ## Advanced: Custom Filtering and Sorting

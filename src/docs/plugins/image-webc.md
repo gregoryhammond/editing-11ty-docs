@@ -7,8 +7,6 @@ eleventyNavigation:
 excludeFromSidebar: true
 ---
 
-{% tableofcontents %}
-
 {% include "image-usage.njk" %}
 
 {% callout "error", "md-block", "Feature Removed" %}Due to and maintenance cost and feature overlap with the [Image HTML Transform](/docs/plugins/image/#html-transform), the `<eleventy-image>` WebC component was retired in Eleventy Image v7. Read more at [GitHub Issue #305](https://github.com/11ty/eleventy-img/issues/305). The [HTML Transform method](/docs/plugins/image/#html-transform) is recommended moving forward. You _can_ also create your own Image component using an approach similar to [Asynchronous Shortcodes](/docs/plugins/image-shortcodes/) using `webc:type="js"`.{% endcallout %}
@@ -23,6 +21,7 @@ Using Eleventy Image in [WebC](/docs/languages/webc.md) offers all the same grea
 
 First, add the following to your project’s configuration file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import eleventyWebcPlugin from "@11ty/eleventy-plugin-webc";
 import { eleventyImagePlugin } from "@11ty/eleventy-img";
@@ -53,6 +52,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% addedin "v3.0.0-alpha.7" %}{% addedin "Image v5.0.0" %}During local development (when using `--serve`), `<eleventy-image>` images are _not_ processed at build time and instead are optimized when requested in the browser. Read more about [`transformOnRequest`](./image.md#optimize-images-on-request).

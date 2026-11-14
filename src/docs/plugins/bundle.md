@@ -8,13 +8,11 @@ eleventyNavigation:
 
 # Bundle {% addedin "3.0.0-alpha.10" %}
 
-{% tableofcontents %}
-
 The Bundle plugin is a plain-text bundler unlocking minimal per-page or app-level bundles of CSS, JavaScript, or HTML to be included in your Eleventy project.
 
 Makes it easy to implement Critical CSS, in-use-only CSS/JS bundles, SVG icon libraries, or secondary HTML content to load via XHR.
 
-* [GitHub `11ty/eleventy-plugin-bundle`](https://github.com/11ty/eleventy-plugin-bundle)
+- [GitHub `11ty/eleventy-plugin-bundle`](https://github.com/11ty/eleventy-plugin-bundle)
 
 ## Why?
 
@@ -26,11 +24,14 @@ For more larger, more complex use cases you may want to use a more full featured
 
 This plugin is included with Eleventy core and requires no additional installation. However, the plugin is opt-in and does not include any bundles by default: you must add these yourself via the `addBundle` configuration method.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	eleventyConfig.addBundle("css");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 `addBundle` does two things:
@@ -41,6 +42,7 @@ export default function(eleventyConfig) {
 <details>
 <summary><strong>Full <code>addBundle</code> options list</strong></summary>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	eleventyConfig.addBundle("css", {
@@ -72,11 +74,14 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 You can read more about:
-* [`transforms` in Postprocessing the Bundle Output](#postprocess-the-bundle-output)
-* [hoist and duplicate bundle hoisting](https://github.com/11ty/eleventy-plugin-bundle/issues/5).
+
+- [`transforms` in Postprocessing the Bundle Output](#postprocess-the-bundle-output)
+- [hoist and duplicate bundle hoisting](https://github.com/11ty/eleventy-plugin-bundle/issues/5).
 
 </details>
 
@@ -195,11 +200,14 @@ And to retrieve the code, you do the same with `getBundle` and `getBundleFileUrl
 
 ### Critical CSS
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	eleventyConfig.addBundle("css");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Now we’ll use asset bucketing to divide CSS between the default bucket and a defer bucket, loaded asynchronously.
@@ -226,11 +234,14 @@ Now we’ll use asset bucketing to divide CSS between the default bucket and a d
 
 ### SVG Icon Library
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	eleventyConfig.addBundle("svg");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}
@@ -255,11 +266,14 @@ And now you can use `icon-close` in as many SVG instances as you’d like (witho
 
 ### React Helmet style `<head>` additions
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	eleventyConfig.addBundle("html");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% raw %}
@@ -280,6 +294,7 @@ export default function(eleventyConfig) {
 
 ### Postprocess the Bundle Output
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import postcss from "postcss";
 import postcssNested from "postcss-nested";
@@ -297,6 +312,8 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Using with [WebC](/docs/languages/webc.md)

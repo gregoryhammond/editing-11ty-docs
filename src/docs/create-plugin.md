@@ -10,12 +10,11 @@ communityLinksKey: plugins
 
 # Create or use Plugins
 
-{% tableofcontents %}
-
 ## Plugins are Configuration
 
 At their simplest, Eleventy plugins are a function passed to the `addPlugin` method. If you’re familiar with [Eleventy configuration files](/docs/config/), this will look and feel very similar!
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(function(eleventyConfig) {
@@ -23,10 +22,13 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 The plugin can be defined elsewhere in the same file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 function myPlugin(eleventyConfig) {
 	// I am a plugin!
@@ -36,10 +38,13 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(myPlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Or in a different file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import myPlugin from "./_config/plugin.js";
 
@@ -47,10 +52,13 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(myPlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Or in an `npm` package:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
@@ -58,10 +66,13 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(pluginRss);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Plugins are async-friendly {% addedin "3.0.0-alpha.1" %} but you must `await` the `addPlugin` method.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default async function (eleventyConfig) {
 	await eleventyConfig.addPlugin(async function(eleventyConfig) {
@@ -69,6 +80,8 @@ export default async function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Adding a Plugin
@@ -87,6 +100,7 @@ npm install @11ty/eleventy-plugin-rss --save
 
 Your config file is probably named `eleventy.config.js` or `.eleventy.js`.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
@@ -94,12 +108,15 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(pluginRss);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Plugin Configuration Options {% addedin "0.5.4" %}
 
 Use an optional second argument to `addPlugin` to customize your plugin’s behavior. These options are specific to the plugin. Please consult the plugin’s documentation (e.g. the [`eleventy-plugin-syntaxhighlight` README](https://github.com/11ty/eleventy-plugin-syntaxhighlight/blob/master/README.md)) to learn what options are available to you.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginSyntaxHighlight from "@11ty/eleventy-plugin-syntaxhighlight";
 
@@ -114,6 +131,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 <details>
@@ -121,6 +140,7 @@ export default function (eleventyConfig) {
 
 It’s unlikely you’ll need this feature _but_ you can namespace parts of your configuration using `eleventyConfig.namespace`. This will add a string prefix to all filters, tags, helpers, shortcodes, collections, and transforms.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginRss from "@11ty/eleventy-plugin-rss";
 
@@ -131,6 +151,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "warn" %}
@@ -145,6 +167,7 @@ Plugins (by default) execute in a second stage of configuration after the user�
 
 You are unlikely to need this, but you can execute a plugin’s code immediately using the `immediate` option.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig, pluginOptions) {
 	console.log( "first" );
@@ -162,6 +185,8 @@ export default function (eleventyConfig, pluginOptions) {
 	console.log("third");
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Creating a Plugin
@@ -170,11 +195,14 @@ A plugin primarily provides a “configuration function.” This function is cal
 
 <div class="codetitle">plugin.js</div>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig, pluginOptions) {
 	// Your plugin code goes here
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 Note that plugins run as a second stage after the user’s primary configuration file has executed (to have access to the return object values).
@@ -186,6 +214,7 @@ If you want to allow developers to use custom arguments provided by your plugin,
 
 <div class="codetitle">plugin-with-args.js</div>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default {
 	initArguments: {},
@@ -194,8 +223,11 @@ export default {
 	},
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(require("./fancy-plugin.js"), {
@@ -206,6 +238,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 </details>
@@ -216,6 +250,7 @@ If your plugin requires a specific feature in Eleventy, you should feature test 
 
 <div class="codetitle">plugin.js</div>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig, pluginOptions) {
 	if(!("addTemplate" in eleventyConfig)) {
@@ -223,6 +258,8 @@ export default function (eleventyConfig, pluginOptions) {
 	}
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 ### Version Checking
@@ -231,6 +268,7 @@ If feature testing is not available for your specific use case, you can add this
 
 <div class="codetitle">plugin.js</div>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig, pluginOptions) {
 	try {
@@ -241,12 +279,13 @@ export default function (eleventyConfig, pluginOptions) {
 	}
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
-* This uses the [`semver` package](https://www.npmjs.com/package/semver) and is compatible with advanced range syntax.
-* **Upper bounding your version number is _not recommended_**. Eleventy works very hard to maintain backwards compatibility between major versions. Please ensure your plugin code does the same!
-* The `versionCheck` method has been available in Eleventy core since v0.3.2 (~2018).
-
+- This uses the [`semver` package](https://www.npmjs.com/package/semver) and is compatible with advanced range syntax.
+- **Upper bounding your version number is _not recommended_**. Eleventy works very hard to maintain backwards compatibility between major versions. Please ensure your plugin code does the same!
+- The `versionCheck` method has been available in Eleventy core since v0.3.2 (~2018).
 
 ### Distributing a Plugin
 

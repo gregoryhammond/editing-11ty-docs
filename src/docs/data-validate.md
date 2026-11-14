@@ -4,6 +4,7 @@ eleventyNavigation:
   key: Validate Data
   order: 6
 ---
+
 # Validate Data {% addedin "v3.0.0-alpha.7" %}
 
 Use the special `eleventyDataSchema` data property to validate data in your Data Cascade. You can set this anywhere in your Data Cascade (front matter, directory data file, global data, etc).
@@ -16,6 +17,7 @@ In the following example, each content template with an `eleventyDataSchema` cal
 
 <div class="codetitle">blog/blog.11tydata.js</div>
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 import { z } from "zod";
 
@@ -31,4 +33,6 @@ export default {
 	}
 };
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}

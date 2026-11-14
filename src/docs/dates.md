@@ -8,26 +8,32 @@ eleventyNavigation:
 
 # Content Dates
 
-{% tableofcontents %}
-
 ## Setting a Content Date in Front Matter
 
 Add a `date` key to your front matter to override the default date (file creation) and customize how the file is sorted in a collection.
 
 {% codetitle "YAML Front Matter", "Syntax" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 date: 2016-01-01
 ---
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 {% codetitle "YAML Front Matter", "Syntax" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 date: Last Modified
 ---
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 Valid `date` values:
@@ -62,13 +68,17 @@ In the callback, you can return:
 
 Here’s an example using IANA time zone codes:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 date: 2019-08-31 23:59:56 America/New_York
 ---
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("yaml") | safe }}
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { DateTime } from "luxon";
 
@@ -80,12 +90,15 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ### Change a Project’s Default Time Zone
 
 Relevant [GitHub Issue #3668](https://github.com/11ty/eleventy/issues/3668). Examples of [valid time zones](https://moment.github.io/luxon/#/zones?id=specifying-a-zone) are available on the Luxon documentation.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import { DateTime } from "luxon";
 
@@ -108,6 +121,8 @@ export default function(eleventyConfig) {
 };
 
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Dates off by one day?
@@ -122,11 +137,14 @@ Many date formats in Eleventy (when set in your content‘s filename as `YYYY-MM
 
 {% codetitle "YAML Front Matter", "Syntax" %}
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 ---
 date: 2018-01-01
 ---
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("markdown") | safe }}
 
 If you output the Date object in a template, it will convert it to a string for display:

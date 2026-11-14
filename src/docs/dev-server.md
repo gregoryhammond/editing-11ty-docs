@@ -7,15 +7,13 @@ eleventyNavigation:
 
 # Eleventy Dev Server {% addedin "2.0.0" %}
 
-{% tableofcontents %}
-
 Eleventy includes its own hot-reloading development server.
 
 - [`11ty/eleventy-dev-server` on GitHub](https://github.com/11ty/eleventy-dev-server).
 - 🏋🏻‍♀️ Minimal footprint: `1.4 MB` node_modules
-	- Helped Eleventy `node_modules` drop from `155 MB` to `34.3 MB`
-	- Faster Eleventy `npm install` times (`30.5%` faster)
-	- Reduced Eleventy dependency count from `311` to `211`
+  - Helped Eleventy `node_modules` drop from `155 MB` to `34.3 MB`
+  - Faster Eleventy `npm install` times (`30.5%` faster)
+  - Reduced Eleventy dependency count from `311` to `211`
 - 📦 Bundler Decoupled
 - 🚄 Fast ~2ms startup times
 - ⚡️ WebSockets-based Live reload
@@ -29,6 +27,7 @@ _Read more detail on the [Eleventy Dev Server 1.0 release notes](https://github.
 
 You can configure the server with the new `setServerOptions` Configuration API method.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	eleventyConfig.setServerOptions({
@@ -76,11 +75,14 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 <details>
 <summary><strong>Expand to see the Full options list</strong></summary>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	eleventyConfig.setServerOptions({
@@ -101,6 +103,8 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 </details>
@@ -123,6 +127,7 @@ Try out the [`devcert-cli`](https://github.com/davewasmer/devcert-cli) package t
 
 {% addedin "3.0.0-alpha.7" %}{% addedin "Dev Server 2.0.0" %} Use the new `onRequest` object to configure some of your project to use on-request-time processing. The keys in this object represent strings from the [URL Pattern API](https://developer.mozilla.org/en-US/docs/Web/API/URL_Pattern_API).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	eleventyConfig.setServerOptions({
@@ -148,10 +153,13 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Works great with the [`process.env.ELEVENTY_RUN_MODE` environment variable](/docs/environment-vars/#eleventy-supplied) to change how your server operates during`--serve` mode.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	// Intercept all requests during --serve mode.
@@ -167,6 +175,8 @@ export default function(eleventyConfig) {
 	}
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Advanced `chokidar` options
@@ -179,13 +189,17 @@ You can swap back to Eleventy Dev Server using the `setServerOptions` configurat
 
 First, install it:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-server-browsersync
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Then, enable it in your configuration file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	eleventyConfig.setServerOptions({
@@ -203,6 +217,8 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 View the [full list of Browsersync options](https://browsersync.io/docs/options).

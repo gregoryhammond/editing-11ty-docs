@@ -10,8 +10,6 @@ overrideCommunityLinks: true
 
 # `<is-land>` for Islands Architecture
 
-{% tableofcontents %}
-
 {% callout "info", "md-block" %}
 _This documentation is for [`<is-land>` v5.0.0](https://github.com/11ty/is-land/releases/tag/v5.0.0) and newer._
 {% endcallout %}
@@ -39,9 +37,12 @@ Features:
 
 ## Installation
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/is-land
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 {% callout "info", "md" -%}
@@ -52,18 +53,24 @@ Add `is-land.js` to your primary bundle. It can be deferred and/or loaded asynch
 
 When using with web components it _must_ be defined before any other custom elements are defined (via `customElements.define`) on the page.
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <script type="module" src="/is-land.js"></script>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 Or you can use `import "/is-land.js";`.
 
 ## Usage
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <is-land>This is an island.</is-land>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 Add any number of loading conditions to this tag to control how and when the island is initialized. You can mix and match. _All_ conditions must be satisfied to initialize.
@@ -82,6 +89,7 @@ Add any number of loading conditions to this tag to control how and when the isl
   - When Save Data is active `on:save-data`
   - When Save Data is inactive `on:save-data="false"`
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <is-land on:visible on:idle>
 	<!-- your HTML here -->
@@ -92,12 +100,15 @@ Add any number of loading conditions to this tag to control how and when the isl
 	</is-land>
 </is-land>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 ### Controlling Fallback Content
 
 #### Pre-JS
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <is-land on:visible on:idle>
 	<vanilla-web-component>
@@ -105,12 +116,15 @@ Add any number of loading conditions to this tag to control how and when the isl
 	</vanilla-web-component>
 </is-land>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 #### Post-JS with `<template>`
 
 Place any post-JS content inside of one or more `<template data-island>` elements anywhere in the `<is-land>`. These will be swapped with their template content. You can nest an `<is-land>` in there if you want!
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <is-land on:visible on:idle>
   <template data-island>
@@ -120,15 +134,18 @@ Place any post-JS content inside of one or more `<template data-island>` element
   </template>
 </is-land>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
-* Use `data-island="replace"` to replace the contents of the `<is-land>` with the template.
-* Use `data-island="once"` to run a template’s contents once per page (keyed from template contents). _(New in v2.0.1)_
+- Use `data-island="replace"` to replace the contents of the `<is-land>` with the template.
+- Use `data-island="once"` to run a template’s contents once per page (keyed from template contents). _(New in v2.0.1)_
 
 #### Run your own custom JavaScript, load your own CSS
 
 Embed a script inside the template to run custom JS when the island’s loading conditions have been satisfied!
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <is-land on:visible>
 	<template data-island>
@@ -146,10 +163,13 @@ Embed a script inside the template to run custom JS when the island’s loading 
 	</template>
 </is-land>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 You can also use the `ready` attribute for styling, added to the `<is-land>` when the island has been hydrated.
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <style>
 	is-land[ready] {
@@ -157,6 +177,8 @@ You can also use the `ready` attribute for styling, added to the `<is-land>` whe
 	}
 </style>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 ### Framework Component Support
@@ -172,6 +194,7 @@ You can also use the `ready` attribute for styling, added to the `<is-land>` whe
 - Rendering modes: Client
 - Progressive-enhancement friendly (full control of fallback content)
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <script type="module">
 	// Define once for any number of Petite Vue islands.
@@ -184,6 +207,8 @@ Island.addInitType("petite-vue", async (target) => {
   Hello from <span v-html="name">HTML</span>
 </is-land>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 #### Vue
@@ -192,6 +217,7 @@ Island.addInitType("petite-vue", async (target) => {
 - Larger library (~73 kB)
 - Rendering modes: Client (shown), Server, Server + Client (Hydration)
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <script type="module">
 	// Define once for any number of Vue islands.
@@ -206,15 +232,18 @@ Island.addInitType("vue", async (target) => {
 	Hello from <span v-text="name"></span>
 </is-land>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 #### Svelte
 
-* [Examples](https://is-land.11ty.dev/demo-svelte) (using Import Maps)
-* Medium-sized library
-* Rendering modes: Client, Server, Server + Client (Hydration)
-* Requires a compiler for client mode (uncommon)
+- [Examples](https://is-land.11ty.dev/demo-svelte) (using Import Maps)
+- Medium-sized library
+- Rendering modes: Client, Server, Server + Client (Hydration)
+- Requires a compiler for client mode (uncommon)
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}{% raw %}
 <script type="module">
 	// Define once for any number of Svelte islands.
@@ -233,11 +262,14 @@ Island.addInitType("svelte", async (target) => {
 {% assign component = "./lib/svelte/my-component-js-only.svelte" | svelte %}
 <is-land on:visible type="svelte" import="{{ component.clientJsUrl }}"></is-land>
 {% endraw %}{%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 <details>
   <summary>Show sample Import Map</summary>
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <!-- importmap from https://generator.jspm.io/ -->
 <script type="importmap">
@@ -259,17 +291,20 @@ Island.addInitType("svelte", async (target) => {
 }
 </script>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 </details>
 
 #### Preact
 
-* [Examples](https://is-land.11ty.dev/demo-preact)
-* Small library (~9 kB)
-* Rendering modes: Client (shown), Server, Server + Client (Hydration)
-* No compiler needed when using [`htm`](https://github.com/developit/htm) rather than JSX.
+- [Examples](https://is-land.11ty.dev/demo-preact)
+- Small library (~9 kB)
+- Rendering modes: Client (shown), Server, Server + Client (Hydration)
+- No compiler needed when using [`htm`](https://github.com/developit/htm) rather than JSX.
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <script type="module">
 	// Define once for any number of Preact islands.
@@ -280,11 +315,14 @@ Island.addInitType("preact", async (target) => {
 </script>
 <is-land on:visible type="preact" import="preact-component.js"></is-land>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 <details>
   <summary>Example component code for <code>preact-component.js</code>:</summary>
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 import { html, render } from 'https://unpkg.com/htm/preact/index.mjs?module'
 
@@ -296,26 +334,32 @@ export default function(el) {
   render(html`<${App} name="from Preact" />`, el);
 }
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 </details>
 
 #### Lit
 
-* [Examples](https://is-land.11ty.dev/demo-lit) (using Import Maps)
-* Small library (~10 kB)
-* Rendering modes: Client, Server, Server + Client (Hydration)
+- [Examples](https://is-land.11ty.dev/demo-lit) (using Import Maps)
+- Small library (~10 kB)
+- Rendering modes: Client, Server, Server + Client (Hydration)
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <is-land on:visible import="lit-component.js">
   <lit-component name="Post-JS">Pre-JS Content</lit-web-component>
 </is-land>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 <details>
   <summary>Show sample Import Map</summary>
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <!-- importmap from https://generator.jspm.io/ -->
 <script type="importmap">
@@ -334,12 +378,15 @@ export default function(el) {
 }
 </script>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 </details>
 
 <details>
   <summary>Example component code <code>lit-component.js</code>:</summary>
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 import {html, css, LitElement} from "lit";
 
@@ -353,17 +400,20 @@ customElements.define('lit-component', class extends LitElement {
   }
 });
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 </details>
 
 #### Alpine.js
 
-* [Examples](https://is-land.11ty.dev/demo-alpine)
-* Smaller library (~20 kB)
-* Rendering modes: Client
-* Progressive-enhancement friendly (control fallback content)
+- [Examples](https://is-land.11ty.dev/demo-alpine)
+- Smaller library (~20 kB)
+- Rendering modes: Client
+- Progressive-enhancement friendly (control fallback content)
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 <script type="module">
 	// Define once for any number of Alpine islands.
@@ -394,10 +444,12 @@ Island.addFallback("[x-data]", (node) => {
   </div>
 </is-land>
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("html") | safe }}
 
 #### Solid.js
 
-* [Examples](https://is-land.11ty.dev/demo-solid) (using Import Maps)
-* Medium library (~40 kB)
-* Rendering modes: Client
+- [Examples](https://is-land.11ty.dev/demo-solid) (using Import Maps)
+- Medium library (~40 kB)
+- Rendering modes: Client

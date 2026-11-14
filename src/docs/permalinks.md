@@ -8,7 +8,7 @@ eleventyNavigation:
 
 # Permalinks
 
-{% tableofcontents %}
+<script type="module" src="/js/browser-window.js"></script>
 
 You can customize the default location of templates to the output directory (or disable writing a file to disk entirely) using Eleventy’s permalinks feature.
 
@@ -37,17 +37,28 @@ We’ll start with a few simple examples of the default permalink behavior, show
     </tbody>
 </table>
 
-<is-land on:visible import="/js/eleventy-editor.js">
-	<template data-island>
-		<p>See it in action for <code>index.liquid</code>:</p>
-		<eleventy-editor html toolbar-position="bottom" data-editor-filename="index.liquid" style="--width-text: 18em">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<p>See it in action for <code>index.liquid</code>:</p>
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-1" output="external" data-editor-filename="index.liquid">
+
+<!-- prettier-ignore-start -->
 {% highlight "liquid" %}{% raw %}
 File   {{ page.inputPath }}
 Writes {{ page.outputPath }}
 URL    {{ page.url }}
 {% endraw %}{% endhighlight %}
-		</eleventy-editor>
-	</template>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill url="/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-1" data-editor-filename="index.liquid"></eleventy-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
 </is-land>
 
 ### Not-`index.*` file names
@@ -69,17 +80,28 @@ URL    {{ page.url }}
     </tbody>
 </table>
 
-<is-land on:visible import="/js/eleventy-editor.js">
-	<template data-island>
-		<p>See it in action for <code>template.liquid</code>:</p>
-		<eleventy-editor html toolbar-position="bottom" data-editor-filename="template.liquid" style="--width-text: 18em">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<p>See it in action for <code>template.liquid</code>:</p>
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-2" output="external" data-editor-filename="template.liquid">
+
+<!-- prettier-ignore-start -->
 {% highlight "liquid" %}{% raw %}
 File   {{ page.inputPath }}
 Writes {{ page.outputPath }}
 URL    {{ page.url }}
 {% endraw %}{% endhighlight %}
-		</eleventy-editor>
-	</template>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill url="/template/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-2" data-editor-filename="template.liquid"></eleventy-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
 </is-land>
 
 ### Deeper directories
@@ -101,17 +123,28 @@ URL    {{ page.url }}
     </tbody>
 </table>
 
-<is-land on:visible import="/js/eleventy-editor.js">
-	<template data-island>
-		<p>See it in action for <code>subdir/template.liquid</code>:</p>
-		<eleventy-editor html toolbar-position="bottom" data-editor-filename="subdir/template.liquid" style="--width-text: 18em">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<p>See it in action for <code>subdir/template.liquid</code>:</p>
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-3" output="external" data-editor-filename="subdir/template.liquid">
+
+<!-- prettier-ignore-start -->
 {% highlight "liquid" %}{% raw %}
 File   {{ page.inputPath }}
 Writes {{ page.outputPath }}
 URL    {{ page.url }}
 {% endraw %}{% endhighlight %}
-		</eleventy-editor>
-	</template>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill url="/subdir/template/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-3" data-editor-filename="subdir/template.liquid"></eleventy-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
 </is-land>
 
 ### When the File name is the same as the Directory name
@@ -133,25 +166,53 @@ URL    {{ page.url }}
     </tbody>
 </table>
 
-<is-land on:visible import="/js/eleventy-editor.js">
-	<template data-island>
-		<p>See it in action for <code>subdir/template/template.liquid</code>:</p>
-		<eleventy-editor html toolbar-position="bottom" data-editor-filename="subdir/template/template.liquid" style="--width-text: 18em">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<p>See it in action for <code>subdir/template/template.liquid</code>:</p>
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-4" output="external" data-editor-filename="subdir/template/template.liquid">
+
+<!-- prettier-ignore-start -->
 {% highlight "liquid" %}{% raw %}
 File   {{ page.inputPath }}
 Writes {{ page.outputPath }}
 URL    {{ page.url }}
 {% endraw %}{% endhighlight %}
-		</eleventy-editor>
-		<p>Note that <code>subdir/template/template.liquid</code> writes to the same location as <code>subdir/template/index.liquid</code>.</p>
-		<eleventy-editor html toolbar-position="bottom" data-editor-filename="subdir/template/index.liquid" style="--width-text: 18em">
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill url="/subdir/template/template/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-4" data-editor-filename="subdir/template/template.liquid"></eleventy-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
+
+Note that `subdir/template/template.liquid` writes to the same location as `subdir/template/index.liquid`.
+
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-5" output="external" data-editor-filename="subdir/template/index.liquid">
+
+<!-- prettier-ignore-start -->
 {% highlight "liquid" %}{% raw %}
 File   {{ page.inputPath }}
 Writes {{ page.outputPath }}
 URL    {{ page.url }}
 {% endraw %}{% endhighlight %}
-		</eleventy-editor>
-	</template>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill url="/subdir/template/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-5" data-editor-filename="subdir/template/index.liquid"></eleventy-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
 </is-land>
 
 ### Cool URIs don’t change
@@ -169,27 +230,55 @@ To remap your template’s output to a different path than the default, use the 
 
 Consider the follwing `index.md` input file file:
 
-{% codetitle "YAML Front Matter", "Syntax" %}
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			{% codetitle "YAML Front Matter", "Syntax" %}
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-6" output="external" data-editor-filename="index.md">
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.md" style="--width-text: 100%">
+<!-- prettier-ignore-start -->
 {% highlight "html" %}{% raw %}
 ---
 permalink: this-is-a-new-path/subdirectory/testing/
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-6"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 When `permalink` points to a directory, we add `index.html` for you. So the above directory permalink is the same as writing this:
 
-{% codetitle "YAML Front Matter", "Syntax" %}
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			{% codetitle "YAML Front Matter", "Syntax" %}
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-7" output="external" data-editor-filename="index.md">
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.md" style="--width-text: 100%">
+<!-- prettier-ignore-start -->
 {% highlight "html" %}{% raw %}
 ---
 permalink: this-is-a-new-path/subdirectory/testing/index.html
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-7"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 Both of the above examples write to `_site/this-is-a-new-path/subdirectory/testing/index.html`.
 
@@ -203,15 +292,29 @@ If you set the `permalink` value to be `false`, this will disable writing the fi
 
 The file will still be processed and rendered for use in [collections](/docs/collections.md) (with [`url` and `outputPath` properties](/docs/data-eleventy-supplied/) set to `false`) but will not be available in your output directory as a standalone file.
 
-{% codetitle "YAML Front Matter", "Syntax" %}
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			{% codetitle "YAML Front Matter", "Syntax" %}
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-8" output="external" data-editor-filename="index.html">
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.html">
+<!-- prettier-ignore-start -->
 {% highlight "markdown" %}{% raw %}
 ---
 permalink: false
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-8"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 ### Use template syntax in Permalink
 
@@ -223,16 +326,30 @@ It’s recommended to use the provided [`slugify` filter](/docs/filters/slugify/
 
 For example:
 
-{% codetitle "YAML Front Matter using Liquid or Nunjucks", "Syntax" %}
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			{% codetitle "YAML Front Matter using Liquid or Nunjucks", "Syntax" %}
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-9" output="external" data-editor-filename="index.liquid">
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.liquid">
+<!-- prettier-ignore-start -->
 {% highlight "liquid" %}{% raw %}
 ---
 title: This is a New Path
 permalink: "subdir/{{ title | slugify }}/index.html"
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-9"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 - Pagination variables also work here! [Read more about Pagination](/docs/pagination/)
 
@@ -242,16 +359,30 @@ Writes to `_site/subdir/this-is-a-new-path/index.html`.
 
 Here’s another example using Liquid’s <code>date</code> filter:
 
-{% codetitle "YAML Front Matter using Liquid", "Syntax" %}
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			{% codetitle "YAML Front Matter using Liquid", "Syntax" %}
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-10" output="external" data-editor-filename="index.liquid">
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.liquid">
+<!-- prettier-ignore-start -->
 {% highlight "liquid" %}{% raw %}
 ---
 date: "2016-01-01T06:00-06:00"
 permalink: "/{{ page.date | date: '%Y/%m/%d' }}/index.html"
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-10"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 Writes to `_site/2016/01/01/index.html`. There are a variety of ways that the page.date variable can be set (using `date` in your front matter is just one of them). Read more about [Content dates](/docs/dates/).
 
@@ -261,40 +392,86 @@ Writes to `_site/2016/01/01/index.html`. There are a variety of ways that the pa
 
 {% callout "pitfall", "md" %}**YAML Pitfall:** If your permalink uses template syntax, make sure that you use quotes! Without quotes YAML may try to parse this as an object if the first character is a `{`, for example `permalink: {% raw %}{{ page.filePathStem }}{% endraw %}.html`. This is a [**common pitfall**](/docs/pitfalls/).{% endcallout %}
 
-{% codetitle "YAML Front Matter using Liquid", "Syntax" %}
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			{% codetitle "YAML Front Matter using Liquid", "Syntax" %}
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-11" output="external" data-editor-filename="index.liquid">
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.liquid">
+<!-- prettier-ignore-start -->
 {% highlight "liquid" %}{% raw %}
 ---
 permalink: "{{ page.filePathStem }}.html"
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-11"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 The error message might look like `can not read a block mapping entry; a multiline key may not be an implicit key` or `bad indentation of a mapping entry`.
 
 If you run the following code you’ll see the error:
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.liquid">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-12" output="external" data-editor-filename="index.liquid">
+
+<!-- prettier-ignore-start -->
 {% highlight "liquid" %}{% raw %}
 ---
 permalink: {{ page.filePathStem }}.html
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<button type="button" class="editor-run">Run Playground</button>
+    			<eleventy-build-output group="permalink-12"></eleventy-build-output>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 ### Custom File Formats
 
 You can change the permalink to output to _any file extension_! For example:
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.liquid">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-13" output="external" data-editor-filename="index.liquid">
+
+<!-- prettier-ignore-start -->
 {% highlight "liquid" %}{% raw %}
 ---
 permalink: index.json
 ---
 {{ page | json: 2 }}
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-13"></eleventy-build-output></browser-window>
+    			<browser-window fill url="/index.json"><eleventy-output html group="permalink-13" data-editor-filename="index.liquid"></eleventy-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 ## Trailing Slashes
 
@@ -312,38 +489,89 @@ If you leave off the file name **and** forget the trailing slash on your permali
 
 This may also cause local development issues if you later attempt to write to a subdirectory of the same name (anything inside `/resource/`).
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.html">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-14" output="external" data-editor-filename="index.html">
+
+<!-- prettier-ignore-start -->
 {% highlight "markdown" %}{% raw %}
 ---
 # ✅ OK
 permalink: /resource/
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.html">
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-14"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
+
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-15" output="external" data-editor-filename="index.html">
+
+<!-- prettier-ignore-start -->
 {% highlight "markdown" %}{% raw %}
 ---
 # ✅ OK (same as above)
 permalink: /resource/index.html
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.html">
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-15"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
+
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-16" output="external" data-editor-filename="index.html">
+
+<!-- prettier-ignore-start -->
 {% highlight "markdown" %}{% raw %}
 ---
 # ⛔️ Throws an error.
 permalink: /resource
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-16"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 #### Allow missing file extensions using Data Cascade
 
 {% addedin "3.0.0-beta.2" %}Eleventy will throw an error if you attempt to write to a file without a file extension. This is not always an error (think `_redirects` on Netlify), so you can opt out of this feature by setting `eleventyAllowMissingExtension: true` somewhere in your data cascade (front matter, directory data file, etc) or disable the error messaging globally.
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.html">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-17" output="external" data-editor-filename="index.html">
+
+<!-- prettier-ignore-start -->
 {% highlight "markdown" %}{% raw %}
 ---
 # ⚠️ Careful!
@@ -351,28 +579,55 @@ eleventyAllowMissingExtension: true
 permalink: /resource
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-17"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 #### Allow missing file extensions globally using Configuration
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	// Disable this error for the project.
 	eleventyConfig.configureErrorReporting({ allowMissingExtensions: true })
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% set tabIdOverride = "permalink-configure-error-reporting" %}
 {% include "snippets/configDefinition.njk" %}
 {% set tabIdOverride = "" %}
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.html" config="#permalink-configure-error-reporting-jsesm">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-18" output="external" data-editor-filename="index.html" config="#permalink-configure-error-reporting-jsesm">
+
+<!-- prettier-ignore-start -->
 {% highlight "markdown" %}{% raw %}
 ---
 # ⚠️ Careful!
 permalink: /resource
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-18"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 <div id="change-permalinks-globally-for-a-project"></div>
 
@@ -380,6 +635,7 @@ permalink: /resource
 
 The following configuration (using [global data via the configuration API](/docs/data-global-custom.md) but you could set this using a [Global Data file](/docs/data-global.md) too) unlocks `/resource`-style URLs on your Eleventy project and works on GitHub Pages, Netlify, Cloudflare Pages, Render, and Azure Static Web Apps. This approach **does _not_ work on Vercel** (due to a [Vercel hosting limitation](https://www.zachleat.com/web/trailing-slash/#results-table)).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	// Set global permalinks to resource.html style
@@ -396,30 +652,63 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% set tabIdOverride = "permalink-remove-trailing-slashes" %}
 {% include "snippets/configDefinition.njk" %}
 {% set tabIdOverride = "" %}
 
 Try out the above configuration with the following template:
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html toolbar-position="bottom" data-editor-filename="template.html" config="#permalink-remove-trailing-slashes-jsesm">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-19" output="external" data-editor-filename="template.html" config="#permalink-remove-trailing-slashes-jsesm">
+
+<!-- prettier-ignore-start -->
 {% highlight "markdown" %}{% raw %}
 {{ page.url }}
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-19" data-editor-filename="template.html"></eleventy-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 Compared to the default behavior:
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html toolbar-position="bottom" data-editor-filename="template.html">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-20" output="external" data-editor-filename="template.html">
+
+<!-- prettier-ignore-start -->
 {% highlight "markdown" %}{% raw %}
 {{ page.url }}
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill url="/template/"><button type="button" class="editor-run">Run Playground</button><eleventy-output html group="permalink-20" data-editor-filename="template.html"></eleventy-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 #### Remove trailing slashes on Vercel
 
 The following works for `/resource`-style URLs on Vercel but additionally requires [`"trailingSlash": false` in your `vercel.json` file](https://vercel.com/docs/projects/project-configuration#trailingslash).
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function(eleventyConfig) {
 	eleventyConfig.addUrlTransform((page) => {
@@ -430,8 +719,9 @@ export default function(eleventyConfig) {
 	});
 };
 {% endset %}
-{% include "snippets/configDefinition.njk" %}
 
+<!-- prettier-ignore-end -->
+{% include "snippets/configDefinition.njk" %}
 
 ## Advanced Usage
 
@@ -442,6 +732,8 @@ Let's say you have a directory of content templates like `recipes/cookies.md` an
 Because of the order of the [data cascade](/docs/data-cascade/) the title of a content template is not immediately available in the directory data file. However, `permalink` is a special case of implied [Computed Data](./data-computed.md) and will have this data available. Inside of your directory data file `recipes.11tydata.js` you could write this:
 
 <div class="codetitle codetitle-right-md">recipes.11tydata.js</div>
+
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default {
 	permalink: function ({ title }) {
@@ -449,6 +741,8 @@ export default {
 	},
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/esmCjsTabs.njk" %}
 
 The title will be [slugified](/docs/filters/slugify/) to be URL-friendly.
@@ -470,6 +764,7 @@ Say we want two or more files on the file system (e.g. `about.en.html` and `abou
 
 This example matches any `.xx.html` URL:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	eleventyConfig.addUrlTransform(({ url }) => {
@@ -482,19 +777,36 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% set tabIdOverride = "permalink-url-transform" %}
 {% include "snippets/configDefinition.njk" %}
 {% set tabIdOverride = "" %}
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html toolbar-position="bottom" data-editor-filename="about.es.html" config="#permalink-url-transform-jsesm">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-21" output="external" data-editor-filename="about.es.html" config="#permalink-url-transform-jsesm">
+
+<!-- prettier-ignore-start -->
 {% highlight "markdown" %}{% raw %}
 ---
 permalink: about.es.html
 ---
 {{ page.url }}
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
 
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-21"></eleventy-build-output></browser-window>
+    			<browser-window fill><eleventy-output html group="permalink-21" data-editor-filename="about.es.html"></eleventy-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 ### Disable templating in permalinks {% addedin "0.7.0" %}
 
@@ -502,53 +814,98 @@ Some template syntaxes are nicer than others and you may want to opt-out of the 
 
 {% callout "pitfall" %}This is a <a href="/docs/pitfalls/"><strong>common pitfall</strong></a> for users of the Pug templating engine.{% endcallout %}
 
-{% codetitle "YAML Front Matter", "Syntax" %}
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			{% codetitle "YAML Front Matter", "Syntax" %}
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-22" output="external" data-editor-filename="index.md">
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.md">
+<!-- prettier-ignore-start -->
 {% highlight "yaml" %}{% raw %}
 ---
 permalink: "/this-will-be-a-string-without-{{templating}}/"
 dynamicPermalink: false
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-22"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 #### Globally disable templating in permalinks {% addedin "0.3.4" %}
 
 Eleventy includes a global configuration option to disable dynamic templating altogether. This will save a few template renders and is probably marginally faster, too.
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	// Dynamic permalinks are enabled by default
 	eleventyConfig.setDynamicPermalinks(false);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% set tabIdOverride = "permalink-dynamic-permalinks" %}
 {% include "snippets/configDefinition.njk" %}
 {% set tabIdOverride = "" %}
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.md" config="#permalink-dynamic-permalinks-jsesm">
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-23" output="external" data-editor-filename="index.md" config="#permalink-dynamic-permalinks-jsesm">
+
+<!-- prettier-ignore-start -->
 {% highlight "yaml" %}{% raw %}
 ---
 permalink: "/this-will-be-a-string-without-{{templating}}/"
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
 
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-23"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 ### Ignore the output directory {% addedin "0.1.4" %}
 
 To remap your template’s output to a directory independent of the output directory (`--output`), use `permalinkBypassOutputDir: true` in your front matter.
 
-{% codetitle "YAML Front Matter", "Syntax" %}
+<is-land on:interaction="click,touchstart" import="/js/eleventy-editor.js">
+	<div class="elv-callout elv-callout-info editor-callout">
+		<div class="elv-callout-c">
+			{% codetitle "YAML Front Matter", "Syntax" %}
+			<div class="editor-layout editor-layout-stacked">
+				<eleventy-editor group="permalink-24" output="external" data-editor-filename="index.html">
 
-<div><is-land on:interaction="touchstart,click,focusin" import="/js/eleventy-editor.js"><eleventy-editor html data-editor-filename="index.html">
+<!-- prettier-ignore-start -->
 {% highlight "yaml" %}{% raw %}
 ---
 permalink: _includes/index.html
 permalinkBypassOutputDir: true
 ---
 {% endraw %}{% endhighlight %}
-</eleventy-editor></is-land></div>
+
+<!-- prettier-ignore-end -->
+
+    			</eleventy-editor>
+    			<browser-window fill flush mode="dark"><button type="button" class="editor-run">Run Playground</button><eleventy-build-output group="permalink-24"></eleventy-build-output></browser-window>
+    		</div>
+    	</div>
+    </div>
+
+</is-land>
 
 Writes to `_includes/index.html` even though the output directory is `_site`. This is useful for writing child templates to the `_includes` directory for re-use in your other templates.

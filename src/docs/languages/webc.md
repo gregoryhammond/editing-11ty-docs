@@ -9,8 +9,6 @@ layout: layouts/langs.njk
 relatedLinks:
 ---
 
-{% tableofcontents "open" %}
-
 | Type           | Value                                                                                                                                                 |
 | -------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Eleventy Name  | `webc`                                                                                                                                                |
@@ -70,13 +68,17 @@ relatedLinks:
 
 It’s on [npm at `@11ty/eleventy-plugin-webc`](https://www.npmjs.com/package/@11ty/eleventy-plugin-webc)!
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-webc
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 To add support for `.webc` files in Eleventy, add the plugin in your Eleventy configuration file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
@@ -84,11 +86,14 @@ export default function(eleventyConfig) {
 	eleventyConfig.addPlugin(pluginWebc);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 <details>
 <summary><strong>Full options list</strong> (defaults shown)</summary>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
@@ -109,6 +114,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 View the [full options list for the Bundle plugin](/docs/plugins/bundle.md). As an example, you can use the [`transforms` array to modify bundle content with postcss](/docs/plugins/bundle.md#postprocess-the-bundle-output).
@@ -165,11 +172,12 @@ This is a (last-resort?) catch-all option to let WebC process `.html` output fil
 A few drawbacks to the transform method:
 
 1. This is the slowest build-performance method to implement WebC in a project, so try the other methods first!
-2. The WebC Eleventy transform operates with [bundler mode disabled](<#css-and-js-bundler-mode>), which means that processes WebC but _does not_ aggregate component JS or CSS. ([Upvote this enhancement request](https://github.com/11ty/eleventy-plugin-webc/issues/55))
+2. The WebC Eleventy transform operates with [bundler mode disabled](#css-and-js-bundler-mode), which means that processes WebC but _does not_ aggregate component JS or CSS. ([Upvote this enhancement request](https://github.com/11ty/eleventy-plugin-webc/issues/55))
 
 <details>
 <summary>The transform is disabled by default, you will need to use the <code>useTransform</code> option to enable it.</summary>
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
@@ -179,6 +187,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 </details>
@@ -274,7 +284,7 @@ Outputs:
 
 </details>
 
-Eleventy runs WebC in Bundler mode. That means that when it finds `<style>`, `<link rel="stylesheet">`, or `<script>` elements in component definitions, they are removed from the output markup and _their content_ is aggregated together for re-use in asset bundles on the page. Read more about [CSS and JS in WebC](<#css-and-js-bundler-mode>). _(You can opt-out of this behavior with `webc:keep`.)_
+Eleventy runs WebC in Bundler mode. That means that when it finds `<style>`, `<link rel="stylesheet">`, or `<script>` elements in component definitions, they are removed from the output markup and _their content_ is aggregated together for re-use in asset bundles on the page. Read more about [CSS and JS in WebC](#css-and-js-bundler-mode). _(You can opt-out of this behavior with `webc:keep`.)_
 
 ### `webc:keep`
 
@@ -560,7 +570,9 @@ Make any attribute or property dynamic (using JavaScript for the value instead o
 
 - {% addedin "@11ty/webc@0.9.0" %}The `:@` dynamic property prefix was added in WebC v0.9.0.
 - In the HTML specification, attribute names are lower-case. {% addedin "@11ty/webc@0.8.0" %}Attribute or property names with dashes are converted to camelcase for JS (e.g. `<my-component @prop-name="test">` can be used like `@text="propName"`). More at [#71](https://github.com/11ty/webc/issues/71).
+
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in dynamic attributes (e.g. `this.src`/`this.alt`) when referencing helpers/data/attributes/property values. -->
+
 - The only currently supported `webc:*` configuration attribute that supports dynamic values is [`webc:bucket`](#asset-bucketing). More to come here: [#143](https://github.com/11ty/webc/issues/143) [#148](https://github.com/11ty/webc/issues/148)
 
 {% include "webc-attribute-guide.njk" %}
@@ -597,7 +609,9 @@ We surface a special `@html` [prop](#props-properties) to override any tag conte
 ```
 
 - Content returned from the `@html` prop will be processed as WebC—return any WebC content here! {% addedin "@11ty/webc@0.5.0" %}
+
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in `@html` or `@raw` (e.g. `this.dataProperty`) when referencing helpers/data/attributes/property values. -->
+
 - Using `webc:raw` will prevent processing the result as WebC {% addedin "@11ty/webc@0.6.0" %}
 - Use `@raw` as an alias for `webc:raw @html` {% addedin "@11ty/webc@0.7.1" %}
 
@@ -981,6 +995,7 @@ This includes [`url`, `slugify`, `log`, and others](/docs/filters/#eleventy-prov
 
 #### Supply your own Helper
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 	// via Universal Filter
@@ -992,6 +1007,8 @@ export default function (eleventyConfig) {
 	// Don’t forget to add the WebC plugin in your config file too!
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ```html
@@ -1060,7 +1077,6 @@ The above example assumes the existence of `_includes/my-layout.webc` (an [Eleve
 ...
 ```
 
-
 {% codetitle "components/my-table.webc" %}
 ```html
 <x webc:is="table">
@@ -1115,6 +1131,7 @@ The above example assumes the existence of `_includes/my-layout.webc` (an [Eleve
 ```
 
 - Read more about the WebC properties: [`@raw`](#raw) {% addedin "@11ty/webc@0.7.1" %} and [`@html`](#html).
+
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in `@html` or `@raw` (e.g. `this.content`) when referencing helpers/data/attributes/property values. -->
 
 </details>
@@ -1143,6 +1160,7 @@ We accept:
 - Array (of file paths or globs) [{% addedin "@11ty/eleventy-plugin-webc@0.9.2" %}](https://github.com/11ty/eleventy-plugin-webc/releases/tag/v0.9.2)
 - [`npm:` prefix aliases](#webcimport) [{% addedin "@11ty/eleventy-plugin-webc@0.9.2" %}](https://github.com/11ty/eleventy-plugin-webc/releases/tag/v0.9.2)
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import pluginWebc from "@11ty/eleventy-plugin-webc";
 
@@ -1162,6 +1180,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Notably, the path for `components` is relative to your project root (**not** your [project’s `input` directory](/docs/config/#input-directory)).
@@ -1279,6 +1299,7 @@ You can opt-out of bundling on a per-element basis [using `webc:keep`](#webckeep
 - {% addedin "@11ty/webc@0.8.0" %}`webc:keep` is required on `<style>` and `<script>` in your layout files to prevent re-bundling the bundles.
 - {% addedin "@11ty/webc@0.8.0" %}The `getCss` and `getJs` helpers are now available to all WebC templates without restriction. Previous versions required them to be used in an _Eleventy Layout_ file.
 - `@raw` was {% addedin "@11ty/webc@0.7.1" %}. Previous versions can use `webc:raw @html`.
+
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in `@html` or `@raw` (e.g. `this.getCss`/`this.page.url`) when referencing helpers/data/attributes/property values. -->
 
 #### Bundle Code Ordering
@@ -1399,6 +1420,7 @@ Then you can output those bucket bundles anywhere on your page like this (here w
 
 - {% addedin "@11ty/webc@0.8.0" %}`webc:keep` is required on `<style>` and `<script>` in your layout files to prevent re-bundling the bundles.
 - {% addedin "@11ty/webc@0.9.1" %}`:webc:bucket` (dynamic attribute) is supported to set this value via JavaScript. [#120](https://github.com/11ty/webc/issues/120)
+
 <!-- * {% addedin "@11ty/webc@0.5.0" %}`this.` is no longer required in `@html` or `@raw` (e.g. `this.getCss`/`this.page.url`) when referencing helpers/data/attributes/property values. -->
 
 #### Cascading Asset Buckets

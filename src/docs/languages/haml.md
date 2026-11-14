@@ -11,19 +11,17 @@ layout: layouts/langs.njk
 
 If you're interested in the HTML shorthand style, the [Pug template language](/docs/languages/pug/) is likely a better option for new projects because it is more actively maintained and adopted.
 
-{% tableofcontents "open" %}
-
-| Eleventy Short Name | File Extension | npm Package                                |
-| ------------------- | -------------- | ------------------------------------------ |
+| Eleventy Short Name | File Extension | npm Package                               |
+| ------------------- | -------------- | ----------------------------------------- |
 | `haml`              | `.haml`        | [`hamljs`](https://github.com/tj/haml.js) |
 
-| Eleventy or Plugin version | `hamljs` version |
-| --- | --- |
-| `@11ty/eleventy@0.x` | `hamljs@0.6.x` |
-| `@11ty/eleventy@1.x` | `hamljs@0.6.x` |
-| `@11ty/eleventy@2.x` | `hamljs@0.6.x` |
-| `@11ty/eleventy@3.x` and newer | N/A |
-| `@11ty/eleventy-plugin-haml@1.x` | `hamljs@0.6.x` |
+| Eleventy or Plugin version       | `hamljs` version |
+| -------------------------------- | ---------------- |
+| `@11ty/eleventy@0.x`             | `hamljs@0.6.x`   |
+| `@11ty/eleventy@1.x`             | `hamljs@0.6.x`   |
+| `@11ty/eleventy@2.x`             | `hamljs@0.6.x`   |
+| `@11ty/eleventy@3.x` and newer   | N/A              |
+| `@11ty/eleventy-plugin-haml@1.x` | `hamljs@0.6.x`   |
 
 You can override a `.haml` file’s template engine. Read more at [Changing a Template’s Rendering Engine](/docs/template-overrides/).
 
@@ -31,15 +29,19 @@ You can override a `.haml` file’s template engine. Read more at [Changing a Te
 
 The `haml` templating language was moved out of Eleventy core in v3 and now requires a plugin installation.
 
-* [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
+- [`11ty/eleventy-plugin-template-languages` on GitHub](https://github.com/11ty/eleventy-plugin-template-languages)
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npm install @11ty/eleventy-plugin-haml
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 Add to your configuration file:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import hamlPlugin from "@11ty/eleventy-plugin-haml";
 
@@ -47,10 +49,13 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(hamlPlugin);
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 Use more options:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import haml from "hamljs";
 import hamlPlugin from "@11ty/eleventy-plugin-haml";
@@ -62,10 +67,12 @@ export default function (eleventyConfig) {
 	});
 }
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 ## Supported Features
 
-| Feature                                                           | Syntax                                                                                   |
-| ----------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| Feature                                | Syntax                                                                                   |
+| -------------------------------------- | ---------------------------------------------------------------------------------------- |
 | 🚫 [Universal Filters](/docs/filters/) | **Not yet supported** `:filterName some text` Read more about [Filters](/docs/filters/). |

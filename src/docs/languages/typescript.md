@@ -7,21 +7,21 @@ relatedTitle: Template Language—TypeScript
 layout: layouts/langs.njk
 ---
 
-<!-- {% tableofcontents "open" %} -->
+| Eleventy Short Name                       | File Extension | npm Package                             |
+| ----------------------------------------- | -------------- | --------------------------------------- |
+| `11ty.ts`                                 | `.11ty.ts`     | [`tsx`]({{ externalLinks.tsxNodeUse }}) |
+| [`11ty.tsx`](/docs/languages/typescript/) | `.11ty.tsx`    | [`tsx`]({{ externalLinks.tsxNodeUse }}) |
 
-| Eleventy Short Name                       | File Extension | npm Package                       |
-| ----------------------------------------- | -------------- | --------------------------------- |
-| `11ty.ts`                                 | `.11ty.ts`     | [`tsx`]({{ externalLinks.tsxNodeUse }})  |
-| [`11ty.tsx`](/docs/languages/typescript/) | `.11ty.tsx`    | [`tsx`]({{ externalLinks.tsxNodeUse }})  |
-
-* Related languages: [JSX](/docs/languages/jsx/), [JavaScript](/docs/languages/javascript/), [Custom](/docs/languages/custom/)
-* _[Front matter](/docs/data-frontmatter/) is not supported in TypeScript files. Use a `data` export instead._
+- Related languages: [JSX](/docs/languages/jsx/), [JavaScript](/docs/languages/javascript/), [Custom](/docs/languages/custom/)
+- _[Front matter](/docs/data-frontmatter/) is not supported in TypeScript files. Use a `data` export instead._
 
 ## Configuration
 
 {% addedin "3.0.0-alpha.11" %}Here we use [Node.js’ type stripping feature](https://nodejs.org/api/typescript.html) (available in Node 22.6+) to process `*.11ty.ts` TypeScript files.
 
 <div class="codetitle">eleventy.config.js</div>
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 
 export default function (eleventyConfig) {
@@ -34,6 +34,8 @@ export default function (eleventyConfig) {
 	eleventyConfig.addTemplateFormats("11ty.ts");
 }
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 You can optionally use an Array `["11ty.ts", "11ty.cts", "11ty.mts"]` instead of `"11ty.ts"` above (in both places) to add additional file extensions supported in Node.js.
@@ -45,6 +47,8 @@ You can optionally use an Array `["11ty.ts", "11ty.cts", "11ty.mts"]` instead of
 {% callout "info", "md" %}This approach requires ESM (read more at [Issue #3304](https://github.com/11ty/eleventy/issues/3304)). This means your project `package.json` must contain `"type": "module"` or your configuration file must use the `.mjs` file extension, e.g. `eleventy.config.mjs`. Read more about [CommonJS versus ESM](../cjs-esm.md).{% endcallout %}
 
 <div class="codetitle">eleventy.config.js</div>
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 import "tsx/esm";
 import { renderToStaticMarkup } from "react-dom/server";
@@ -66,6 +70,8 @@ export default function (eleventyConfig) {
 	eleventyConfig.addTemplateFormats(["11ty.jsx", "11ty.ts", "11ty.tsx"]);
 }
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 Now Eleventy will find and process `**/*.11ty.{jsx,ts,tsx}` files.
@@ -74,23 +80,29 @@ Now Eleventy will find and process `**/*.11ty.{jsx,ts,tsx}` files.
 
 {% addedin "3.0.0-alpha.11" %}Here we use [Node.js’ type stripping feature](https://nodejs.org/api/typescript.html) (available in Node 22.6+) to use a TypeScript configuration file.
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npx @11ty/eleventy --config=eleventy.config.ts
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 ### Or use `tsx` (Node.js)
 
 You can use `tsx` to process your configuration file too, just run it directly like so:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npx tsx ./node_modules/.bin/eleventy --config=eleventy.config.ts
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}
 
 ## Community Contributions <span id="alternative-approaches"></span>
 
-* {% indieweblink "JetBrains: Better 11ty Development with Tooling", "https://www.jetbrains.com/guide/javascript/tutorials/eleventy-tsx/" %}
+- {% indieweblink "JetBrains: Better 11ty Development with Tooling", "https://www.jetbrains.com/guide/javascript/tutorials/eleventy-tsx/" %}
 
 ### Using `esbuild-register`
 
@@ -99,6 +111,8 @@ If you’d like an approach that works with CommonJS and Eleventy 2.0, you can u
 Your config file might look like this:
 
 {% codetitle "eleventy.config.js (CommonJS)" %}
+
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 const { register } = require("esbuild-register/dist/node");
 
@@ -111,11 +125,16 @@ module.exports = function(eleventyConfig) {
 	});
 };
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("js") | safe }}
 
 Now run Eleventy and tell it to process `11ty.ts` and `11ty.tsx` files:
 
+<!-- prettier-ignore-start -->
 {%- set codeBlock %}
 npx @11ty/eleventy --formats=11ty.ts,11ty.tsx
 {%- endset %}
+
+<!-- prettier-ignore-end -->
 {{ codeBlock | highlight("bash") | safe }}

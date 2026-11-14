@@ -25,6 +25,7 @@ But, after all that, you can still add a Custom Tag using the [Configuration API
 
 - [LiquidJS: Tags](https://liquidjs.com/tutorials/register-filters-tags.html)
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 {% raw %}  // Usage: {% uppercase myVar %} where myVar has a value of "alice"
@@ -45,6 +46,8 @@ export default function (eleventyConfig) {
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 See all of the [built-in tag implementations for LiquidJS](https://liquidjs.com/tags/overview.html).
@@ -53,6 +56,7 @@ See all of the [built-in tag implementations for LiquidJS](https://liquidjs.com/
 
 - [Nunjucks: Custom Tags](https://mozilla.github.io/nunjucks/api.html#custom-tags)
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 export default function (eleventyConfig) {
 {% raw %}  // Usage: {% uppercase myVar %} where myVar has a value of "alice"
@@ -80,4 +84,6 @@ export default function (eleventyConfig) {
   });
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}

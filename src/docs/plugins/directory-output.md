@@ -9,8 +9,6 @@ excludeFromSidebar: true
 
 # Directory Output
 
-{% tableofcontents %}
-
 Group and sort Eleventy’s verbose output by directory (and show file size with benchmarks). View the [source code on GitHub](https://github.com/11ty/eleventy-plugin-directory-output).
 
 ## Installation
@@ -24,6 +22,7 @@ npm install @11ty/eleventy-plugin-directory-output
 
 Open up your Eleventy config file (probably `eleventy.config.js`) and use `addPlugin`:
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import dirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
@@ -32,6 +31,8 @@ export default function (eleventyConfig) {
 	eleventyConfig.addPlugin(dirOutputPlugin);
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}You’re only allowed one `module.exports` in your configuration file, so make sure you only copy the `require` and the `addPlugin` lines above!{% endcallout %}
@@ -40,6 +41,7 @@ Read more about [Eleventy plugins.](/docs/plugins/)
 
 ## Options
 
+<!-- prettier-ignore-start -->
 {% set codeContent %}
 import dirOutputPlugin from "@11ty/eleventy-plugin-directory-output";
 
@@ -57,6 +59,8 @@ export default function (eleventyConfig) {
 	});
 };
 {% endset %}
+
+<!-- prettier-ignore-end -->
 {% include "snippets/configDefinition.njk" %}
 
 {% callout "info", "md" %}The `benchmark` column is only compatible with Eleventy 1.0.1 or newer.{% endcallout %}
